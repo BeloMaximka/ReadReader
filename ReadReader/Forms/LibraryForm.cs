@@ -47,6 +47,11 @@ namespace ReadReader
                     view.Items.Insert(view.Items.Count - 1, item);
                 }
             }
+            else
+            {
+                Book book = BookFileLoader.LoadBookFromDir(".\\library", (uint)view.SelectedItems[0].Tag);
+                new BookForm(book).ShowDialog();
+            }
         }
 
         private void libraryItemContext_Opening(object sender, CancelEventArgs e)

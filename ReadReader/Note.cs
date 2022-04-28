@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ReadReader
 {
-    internal class Note
+    public class Note
     {
         public int StartIndex { get; set; }
         public int EndIndex { get; set; }

@@ -48,12 +48,40 @@ namespace ReadReader
             Book book = new Book();
             RichTextBox textBox = new RichTextBox();
             textBox.Rtf = sb.ToString();
-            book.RTF = textBox.Text;
+            book.RTF = sb.ToString();
             book.Info.Title = eBook.Title;
             book.Info.Authors = eBook.AuthorList;
             return book;
         }
+        public static Book LoadBookFromDir(string path, uint id)
+        {
+            foreach (var directory in Directory.GetDirectories(".\\library"))
+            {
+                uint dirId;
+                Regex regex = new Regex("\\\\\\d.");
+                string number = regex.Match(directory).ToString().Trim('\\', '.');
+                if (uint.TryParse(number, out dirId) && dirId == id)
+                {
+                    Book book = new Book();
+                    book.RTF = File.ReadAllText(directory + "\\text.rtf");
 
+                    JsonSerializer serializer = new JsonSerializer();
+                    using (StreamReader sr = new StreamReader(directory + "\\info.json"))
+                    using (JsonReader reader = new JsonTextReader(sr))
+                    {
+                        dynamic data = serializer.Deserialize(reader);
+                        book.Info.Title = data.Title;
+                        var list = ((Newtonsoft.Json.Linq.JArray)data.Authors).ToList();
+                        book.Info.Authors = new List<string>();
+                        foreach (var item in list)
+                            book.Info.Authors.Add(item.ToString());
+                        book.Info.ID = (uint)data.ID;
+                    }
+                    return book;
+                }
+            }
+            return null;
+        }
         public static BindingList<BookInfo> LoadAllBooksFromDir(string path)
         {
             BindingList<BookInfo> result = new BindingList<BookInfo>();

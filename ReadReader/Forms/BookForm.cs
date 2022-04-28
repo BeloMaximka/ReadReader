@@ -12,9 +12,17 @@ namespace ReadReader
 {
     public partial class BookForm : Form
     {
-        public BookForm()
+        Book book;
+        public BookForm(Book book)
         {
+            this.book = book;
             InitializeComponent();
+            richTextBox.Rtf = book.RTF;
+        }
+
+        private void bookmarkButton_Click(object sender, EventArgs e)
+        {
+            bookmarkPanel.Visible = !bookmarkPanel.Visible;
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 namespace ReadReader
 {
-    internal class Book
+    public class Book
     {
         public BookInfo Info { get; set; } = new BookInfo();
         public string RTF { get; set; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ReadReader
 {
-    internal class BookInfo
+    public class BookInfo
     {
         public string Title { get; set; }
         public List<string> Authors { get; set; }

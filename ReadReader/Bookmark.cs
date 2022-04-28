@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ReadReader
 {
-    internal class Bookmark
+    public class Bookmark
     {
         public int Position { get; set; }
         public string Name { get; set; }

@@ -42,7 +42,7 @@ namespace ReadReader
 
                     ListViewItem item = new ListViewItem(book.Info.Title, 0);
                     item.Tag = book.Info.ID;
-                    libraryListView.Items.Insert(view.Items.Count - 1, item);
+                    view.Items.Insert(view.Items.Count - 1, item);
                 }
             }
         }
@@ -52,6 +52,25 @@ namespace ReadReader
             if (libraryListView.SelectedItems.Count == 0 ||
                 libraryListView.Items[libraryListView.Items.Count - 1].Selected)
                 e.Cancel = true;
+        }
+
+        private void libraryListView_DragDrop(object sender, DragEventArgs e)
+        {
+            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+            foreach (var file in files)
+            {
+                Book book = BookFileLoader.LoadFromFile(file);
+                BookFileSaver.SaveBook(".\\library", 0, book);
+
+                ListViewItem item = new ListViewItem(book.Info.Title, 0);
+                item.Tag = book.Info.ID;
+                libraryListView.Items.Insert(libraryListView.Items.Count - 1, item);
+            }
+        }
+
+        private void libraryListView_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop)) e.Effect = DragDropEffects.Copy;
         }
     }
 }

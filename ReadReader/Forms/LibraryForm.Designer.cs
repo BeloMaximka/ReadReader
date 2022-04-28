@@ -47,6 +47,7 @@
             // 
             // libraryListView
             // 
+            this.libraryListView.AllowDrop = true;
             this.libraryListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.nameColumn});
             this.libraryListView.ContextMenuStrip = this.libraryItemContext;
@@ -59,6 +60,8 @@
             this.libraryListView.TabIndex = 1;
             this.libraryListView.UseCompatibleStateImageBehavior = false;
             this.libraryListView.View = System.Windows.Forms.View.Details;
+            this.libraryListView.DragDrop += new System.Windows.Forms.DragEventHandler(this.libraryListView_DragDrop);
+            this.libraryListView.DragEnter += new System.Windows.Forms.DragEventHandler(this.libraryListView_DragEnter);
             this.libraryListView.DoubleClick += new System.EventHandler(this.libraryListView_DoubleClick);
             // 
             // libraryItemContext

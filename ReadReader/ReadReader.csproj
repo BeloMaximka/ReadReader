@@ -145,5 +145,11 @@
   <ItemGroup>
     <None Include="Resources\folder.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\address_book.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\address_book_add.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -16,12 +16,12 @@ namespace ReadReader
         {
             InitializeComponent();
             ListViewItem item = new ListViewItem("Добавить...");
-            libraryListView.LargeImageList = new ImageList();
-            libraryListView.LargeImageList.ImageSize = new Size(128, 128);
-            libraryListView.LargeImageList.Images.Add(Resource.folder);
-            item.ImageIndex = 0;
+            libraryListView.SmallImageList = new ImageList();
+            //libraryListView.LargeImageList.ImageSize = new Size(128, 128);
+            libraryListView.SmallImageList.Images.Add(Resource.address_book);
+            libraryListView.SmallImageList.Images.Add(Resource.address_book_add);
+            item.ImageIndex = 1;
             libraryListView.Items.Add(item);
-            libraryListView.Items.Add(item.Clone() as ListViewItem);
         }
 
         private void libraryListView_DoubleClick(object sender, EventArgs e)
@@ -30,9 +30,11 @@ namespace ReadReader
             if (view.Items[view.Items.Count-1].Selected)
             {
                 OpenFileDialog openFileDialog = new OpenFileDialog();
-                openFileDialog.ShowDialog();
-                Book book = BookFileLoader.LoadFromFile(openFileDialog.FileName);
-                BookFileSaver.SaveBook(".\\library", 1, book);
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    Book book = BookFileLoader.LoadFromFile(openFileDialog.FileName);
+                    BookFileSaver.SaveBook(".\\library", 1, book);
+                }
             }
         }
 

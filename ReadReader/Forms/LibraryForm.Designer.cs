@@ -33,6 +33,7 @@
             this.libraryListView = new System.Windows.Forms.ListView();
             this.libraryItemContext = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.удалитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nameColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.libraryItemContext.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,6 +47,8 @@
             // 
             // libraryListView
             // 
+            this.libraryListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.nameColumn});
             this.libraryListView.ContextMenuStrip = this.libraryItemContext;
             this.libraryListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.libraryListView.HideSelection = false;
@@ -55,6 +58,7 @@
             this.libraryListView.Size = new System.Drawing.Size(800, 425);
             this.libraryListView.TabIndex = 1;
             this.libraryListView.UseCompatibleStateImageBehavior = false;
+            this.libraryListView.View = System.Windows.Forms.View.Details;
             this.libraryListView.DoubleClick += new System.EventHandler(this.libraryListView_DoubleClick);
             // 
             // libraryItemContext
@@ -70,6 +74,11 @@
             this.удалитьToolStripMenuItem.Name = "удалитьToolStripMenuItem";
             this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
             this.удалитьToolStripMenuItem.Text = "Удалить";
+            // 
+            // nameColumn
+            // 
+            this.nameColumn.Text = "Название";
+            this.nameColumn.Width = 90;
             // 
             // LibraryForm
             // 
@@ -92,5 +101,6 @@
         private System.Windows.Forms.ListView libraryListView;
         private System.Windows.Forms.ContextMenuStrip libraryItemContext;
         private System.Windows.Forms.ToolStripMenuItem удалитьToolStripMenuItem;
+        private System.Windows.Forms.ColumnHeader nameColumn;
     }
 }

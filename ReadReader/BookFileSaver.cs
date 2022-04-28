@@ -33,7 +33,8 @@ namespace ReadReader
                     Regex nameRegex = new Regex("[\\/:*?\"<>|+.]");
                     string correctName = nameRegex.Replace(book.Title, "").Trim(' ');
                     resultDir = id.ToString() + ". " + correctName;
-                    Directory.Move(directory, $"{path}\\{resultDir}");
+                    if (directory != $"{path}\\{resultDir}")
+                        Directory.Move(directory, $"{path}\\{resultDir}");
                     break;
                 }
             }

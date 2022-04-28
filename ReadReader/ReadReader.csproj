@@ -79,6 +79,7 @@
       <DependentUpon>BookForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Bookmark.cs" />
+    <Compile Include="BookInfo.cs" />
     <Compile Include="Forms\Form1.cs">
       <SubType>Form</SubType>
     </Compile>

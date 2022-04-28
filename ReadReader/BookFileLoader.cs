@@ -7,6 +7,9 @@ using VersOne.Epub;
 using MarkupConverter;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.ComponentModel;
+using System.Text.RegularExpressions;
+using Newtonsoft.Json;
 
 namespace ReadReader
 {
@@ -46,9 +49,33 @@ namespace ReadReader
             RichTextBox textBox = new RichTextBox();
             textBox.Rtf = sb.ToString();
             book.RTF = textBox.Text;
-            book.Title = eBook.Title;
-            book.Authors = eBook.AuthorList;
+            book.Info.Title = eBook.Title;
+            book.Info.Authors = eBook.AuthorList;
             return book;
+        }
+
+        public static BindingList<BookInfo> LoadAllBooksFromDir(string path)
+        {
+            BindingList<BookInfo> result = new BindingList<BookInfo>();
+            foreach (var directory in Directory.GetDirectories(path))
+            {
+                BookInfo info = new BookInfo();
+                JsonSerializer serializer = new JsonSerializer();
+                using (StreamReader sr = new StreamReader(directory + "\\" + "info.json"))
+                using (JsonReader reader = new JsonTextReader(sr))
+                {
+                    dynamic data = serializer.Deserialize(reader);
+                    info.Title = data.Title;
+                    var list = ((Newtonsoft.Json.Linq.JArray)data.Authors).ToList();
+                    info.Authors = new List<string>();
+                    foreach (var item in list)
+                        info.Authors.Add(item.ToString());
+                    info.ID = (uint)data.ID;
+                }
+
+                result.Add(info);
+            }
+            return result;
         }
     }
 }

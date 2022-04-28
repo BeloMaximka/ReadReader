@@ -31,7 +31,7 @@ namespace ReadReader
                 if (uint.TryParse(number, out dirId) && dirId == id)
                 {
                     Regex nameRegex = new Regex("[\\/:*?\"<>|+.]");
-                    string correctName = nameRegex.Replace(book.Title, "").Trim(' ');
+                    string correctName = nameRegex.Replace(book.Info.Title, "").Trim(' ');
                     resultDir = id.ToString() + ". " + correctName;
                     if (directory != $"{path}\\{resultDir}")
                         Directory.Move(directory, $"{path}\\{resultDir}");
@@ -41,7 +41,7 @@ namespace ReadReader
             if (resultDir == "")
             {
                 uint curID;
-                if (Directory.Exists(path + '\\' + "data.bin"))
+                if (File.Exists(path + '\\' + "data.bin"))
                 {
                     curID = BitConverter.ToUInt32(File.ReadAllBytes(path + '\\' + "data.bin"), 0);
                     File.WriteAllBytes(path + '\\' + "data.bin", BitConverter.GetBytes(curID + 1));
@@ -53,12 +53,12 @@ namespace ReadReader
                 }
 
                 Regex regex = new Regex("[\\/:*?\"<>|+.]");
-                string correctName = regex.Replace(book.Title, "").Trim(' ');
+                string correctName = regex.Replace(book.Info.Title, "").Trim(' ');
 
                 resultDir = curID.ToString() + ". " + correctName;
                 Directory.CreateDirectory($"{path}\\{resultDir}");
             }
-            var data = new { Title = book.Title, Authors = book.Authors };
+            var data = new { Title = book.Info.Title, Authors = book.Info.Authors, ID = id};
             JsonSerializer serializer = new JsonSerializer();
             using (StreamWriter sw = new StreamWriter($"{path}\\{resultDir}\\info.json"))
             using (JsonWriter writer = new JsonTextWriter(sw))

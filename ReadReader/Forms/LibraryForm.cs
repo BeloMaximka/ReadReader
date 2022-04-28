@@ -15,32 +15,41 @@ namespace ReadReader
         public LibraryForm()
         {
             InitializeComponent();
-            ListViewItem item = new ListViewItem("Добавить...");
             libraryListView.SmallImageList = new ImageList();
-            //libraryListView.LargeImageList.ImageSize = new Size(128, 128);
             libraryListView.SmallImageList.Images.Add(Resource.address_book);
             libraryListView.SmallImageList.Images.Add(Resource.address_book_add);
-            item.ImageIndex = 1;
-            libraryListView.Items.Add(item);
+            var books = BookFileLoader.LoadAllBooksFromDir(".\\library");
+            foreach (var book in books)
+            {
+                ListViewItem item = new ListViewItem(book.Title, 0);
+                item.Tag = book.ID;
+                libraryListView.Items.Add(item);
+            }
+            libraryListView.Items.Add(new ListViewItem("Добавить...", 1));
+            libraryListView.Columns[0].Width = 185;
         }
 
         private void libraryListView_DoubleClick(object sender, EventArgs e)
         {
             ListView view = sender as ListView;
-            if (view.Items[view.Items.Count-1].Selected)
+            if (view.Items[view.Items.Count - 1].Selected)
             {
                 OpenFileDialog openFileDialog = new OpenFileDialog();
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     Book book = BookFileLoader.LoadFromFile(openFileDialog.FileName);
-                    BookFileSaver.SaveBook(".\\library", 1, book);
+                    BookFileSaver.SaveBook(".\\library", 0, book);
+
+                    ListViewItem item = new ListViewItem(book.Info.Title, 0);
+                    item.Tag = book.Info.ID;
+                    libraryListView.Items.Insert(view.Items.Count - 1, item);
                 }
             }
         }
 
         private void libraryItemContext_Opening(object sender, CancelEventArgs e)
         {
-            if (libraryListView.SelectedItems.Count == 0 || 
+            if (libraryListView.SelectedItems.Count == 0 ||
                 libraryListView.Items[libraryListView.Items.Count - 1].Selected)
                 e.Cancel = true;
         }

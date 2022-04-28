@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -41,7 +43,7 @@ namespace ReadReader
                     BookFileSaver.SaveBook(".\\library", 0, book);
 
                     ListViewItem item = new ListViewItem(book.Info.Title, 0);
-                    item.Tag = book.Info.ID;
+                    item.Tag = LibraryManager.GetId(".\\library");
                     view.Items.Insert(view.Items.Count - 1, item);
                 }
             }
@@ -63,7 +65,7 @@ namespace ReadReader
                 BookFileSaver.SaveBook(".\\library", 0, book);
 
                 ListViewItem item = new ListViewItem(book.Info.Title, 0);
-                item.Tag = book.Info.ID;
+                item.Tag = LibraryManager.GetId(".\\library");
                 libraryListView.Items.Insert(libraryListView.Items.Count - 1, item);
             }
         }
@@ -71,6 +73,23 @@ namespace ReadReader
         private void libraryListView_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop)) e.Effect = DragDropEffects.Copy;
+        }
+
+        private void DeleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            uint id = (uint)libraryListView.SelectedItems[0].Tag;
+            libraryListView.Items.Remove(libraryListView.SelectedItems[0]);
+            foreach (var directory in Directory.GetDirectories(".\\library"))
+            {
+                uint dirId;
+                Regex regex = new Regex("\\\\\\d.");
+                string number = regex.Match(directory).ToString().Trim('\\', '.');
+                if (uint.TryParse(number, out dirId) && dirId == id)
+                {
+                    Directory.Delete(directory, true);
+                    return;
+                }
+            }
         }
     }
 }

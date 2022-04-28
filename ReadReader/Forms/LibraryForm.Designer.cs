@@ -31,9 +31,9 @@
             this.components = new System.ComponentModel.Container();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.libraryListView = new System.Windows.Forms.ListView();
-            this.libraryItemContext = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.удалитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nameColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.libraryItemContext = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.DeleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.libraryItemContext.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,24 +64,25 @@
             this.libraryListView.DragEnter += new System.Windows.Forms.DragEventHandler(this.libraryListView_DragEnter);
             this.libraryListView.DoubleClick += new System.EventHandler(this.libraryListView_DoubleClick);
             // 
-            // libraryItemContext
-            // 
-            this.libraryItemContext.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.удалитьToolStripMenuItem});
-            this.libraryItemContext.Name = "libraryItemContext";
-            this.libraryItemContext.Size = new System.Drawing.Size(119, 26);
-            this.libraryItemContext.Opening += new System.ComponentModel.CancelEventHandler(this.libraryItemContext_Opening);
-            // 
-            // удалитьToolStripMenuItem
-            // 
-            this.удалитьToolStripMenuItem.Name = "удалитьToolStripMenuItem";
-            this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
-            this.удалитьToolStripMenuItem.Text = "Удалить";
-            // 
             // nameColumn
             // 
             this.nameColumn.Text = "Название";
             this.nameColumn.Width = 90;
+            // 
+            // libraryItemContext
+            // 
+            this.libraryItemContext.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.DeleteToolStripMenuItem});
+            this.libraryItemContext.Name = "libraryItemContext";
+            this.libraryItemContext.Size = new System.Drawing.Size(119, 26);
+            this.libraryItemContext.Opening += new System.ComponentModel.CancelEventHandler(this.libraryItemContext_Opening);
+            // 
+            // DeleteToolStripMenuItem
+            // 
+            this.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem";
+            this.DeleteToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.DeleteToolStripMenuItem.Text = "Удалить";
+            this.DeleteToolStripMenuItem.Click += new System.EventHandler(this.DeleteToolStripMenuItem_Click);
             // 
             // LibraryForm
             // 
@@ -103,7 +104,7 @@
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ListView libraryListView;
         private System.Windows.Forms.ContextMenuStrip libraryItemContext;
-        private System.Windows.Forms.ToolStripMenuItem удалитьToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem DeleteToolStripMenuItem;
         private System.Windows.Forms.ColumnHeader nameColumn;
     }
 }

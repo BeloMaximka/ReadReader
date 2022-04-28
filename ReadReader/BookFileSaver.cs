@@ -38,27 +38,17 @@ namespace ReadReader
                     break;
                 }
             }
+            uint curID = LibraryManager.GetId(path, true);
+            
             if (resultDir == "")
             {
-                uint curID;
-                if (File.Exists(path + '\\' + "data.bin"))
-                {
-                    curID = BitConverter.ToUInt32(File.ReadAllBytes(path + '\\' + "data.bin"), 0);
-                    File.WriteAllBytes(path + '\\' + "data.bin", BitConverter.GetBytes(curID + 1));
-                }
-                else
-                {
-                    curID = 1;
-                    File.WriteAllBytes(path + '\\' + "data.bin", BitConverter.GetBytes(2u));
-                }
-
                 Regex regex = new Regex("[\\/:*?\"<>|+.]");
                 string correctName = regex.Replace(book.Info.Title, "").Trim(' ');
 
                 resultDir = curID.ToString() + ". " + correctName;
                 Directory.CreateDirectory($"{path}\\{resultDir}");
             }
-            var data = new { Title = book.Info.Title, Authors = book.Info.Authors, ID = id};
+            var data = new { Title = book.Info.Title, Authors = book.Info.Authors, ID = curID };
             JsonSerializer serializer = new JsonSerializer();
             using (StreamWriter sw = new StreamWriter($"{path}\\{resultDir}\\info.json"))
             using (JsonWriter writer = new JsonTextWriter(sw))

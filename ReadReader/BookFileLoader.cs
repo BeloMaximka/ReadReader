@@ -13,12 +13,14 @@ using Newtonsoft.Json;
 
 namespace ReadReader
 {
-    static class BookFileLoader
+    class BookFileLoader
     {
+        string path;
         delegate Book Loader(string path);
         static Dictionary<string, Loader> loaders;
-        static BookFileLoader()
+        public BookFileLoader(string path)
         {
+            this.path = path;
             loaders = new Dictionary<string, Loader>();
             loaders.Add(".epub", LoadFromEpub);
         }
@@ -53,9 +55,9 @@ namespace ReadReader
             book.Info.Authors = eBook.AuthorList;
             return book;
         }
-        public static Book LoadBookFromDir(string path, uint id)
+        public Book LoadBookFromDir(uint id)
         {
-            foreach (var directory in Directory.GetDirectories(".\\library"))
+            foreach (var directory in Directory.GetDirectories(path))
             {
                 uint dirId;
                 Regex regex = new Regex("\\\\\\d.");
@@ -82,7 +84,7 @@ namespace ReadReader
             }
             return null;
         }
-        public static BindingList<BookInfo> LoadAllBooksFromDir(string path)
+        public BindingList<BookInfo> LoadAllBooksFromDir()
         {
             BindingList<BookInfo> result = new BindingList<BookInfo>();
             foreach (var directory in Directory.GetDirectories(path))

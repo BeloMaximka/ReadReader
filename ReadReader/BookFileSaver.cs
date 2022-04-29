@@ -8,9 +8,16 @@ using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 namespace ReadReader
 {
-    static class BookFileSaver
+    class BookFileSaver
     {
-        public static void SaveBook(string path, uint id, Book book)
+        string path;
+        LibraryManager library;
+        public BookFileSaver(string path)
+        {
+            this.path = path;
+            library = new LibraryManager(path);
+        }
+        public void SaveBook(uint id, Book book)
         {
             string resultDir = "";
             string[] directories;
@@ -38,8 +45,8 @@ namespace ReadReader
                     break;
                 }
             }
-            uint curID = LibraryManager.GetId(path, true);
-            
+            uint curID = ++library.ID;
+
             if (resultDir == "")
             {
                 Regex regex = new Regex("[\\/:*?\"<>|+.]");

@@ -14,13 +14,20 @@ namespace ReadReader
 {
     public partial class LibraryForm : Form
     {
-        public LibraryForm()
+        LibraryManager libraryManager;
+        BookFileLoader bookFileLoader;
+        BookFileSaver bookFileSaver;
+        public LibraryForm(string path)
         {
+            libraryManager = new LibraryManager(path);
+            bookFileLoader = new BookFileLoader(path);
+            bookFileSaver = new BookFileSaver(path);
+
             InitializeComponent();
             libraryListView.SmallImageList = new ImageList();
             libraryListView.SmallImageList.Images.Add(Resource.address_book);
             libraryListView.SmallImageList.Images.Add(Resource.address_book_add);
-            var books = BookFileLoader.LoadAllBooksFromDir(".\\library");
+            var books = bookFileLoader.LoadAllBooksFromDir();
             foreach (var book in books)
             {
                 ListViewItem item = new ListViewItem(book.Title, 0);
@@ -40,16 +47,16 @@ namespace ReadReader
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     Book book = BookFileLoader.LoadFromFile(openFileDialog.FileName);
-                    BookFileSaver.SaveBook(".\\library", 0, book);
+                    bookFileSaver.SaveBook(0, book);
 
                     ListViewItem item = new ListViewItem(book.Info.Title, 0);
-                    item.Tag = LibraryManager.GetId(".\\library");
+                    item.Tag = libraryManager.ID;
                     view.Items.Insert(view.Items.Count - 1, item);
                 }
             }
             else
             {
-                Book book = BookFileLoader.LoadBookFromDir(".\\library", (uint)view.SelectedItems[0].Tag);
+                Book book = bookFileLoader.LoadBookFromDir((uint)view.SelectedItems[0].Tag);
                 new BookForm(book).ShowDialog();
             }
         }
@@ -67,10 +74,10 @@ namespace ReadReader
             foreach (var file in files)
             {
                 Book book = BookFileLoader.LoadFromFile(file);
-                BookFileSaver.SaveBook(".\\library", 0, book);
+                bookFileSaver.SaveBook(0, book);
 
                 ListViewItem item = new ListViewItem(book.Info.Title, 0);
-                item.Tag = LibraryManager.GetId(".\\library");
+                item.Tag = libraryManager.ID;
                 libraryListView.Items.Insert(libraryListView.Items.Count - 1, item);
             }
         }

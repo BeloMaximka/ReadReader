@@ -16,7 +16,7 @@ namespace ReadReader
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LibraryForm());
+            Application.Run(new LibraryForm(".\\library"));
         }
     }
 }

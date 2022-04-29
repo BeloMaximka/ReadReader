@@ -24,5 +24,10 @@ namespace ReadReader
         {
             bookmarkPanel.Visible = !bookmarkPanel.Visible;
         }
+
+        private void bookmarkCloseButton_Click(object sender, EventArgs e)
+        {
+            bookmarkPanel.Hide();
+        }
     }
 }

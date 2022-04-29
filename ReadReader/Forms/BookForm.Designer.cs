@@ -88,6 +88,7 @@
             this.bookmarkCloseButton.Name = "bookmarkCloseButton";
             this.bookmarkCloseButton.Size = new System.Drawing.Size(23, 22);
             this.bookmarkCloseButton.Text = "toolStripButton1";
+            this.bookmarkCloseButton.Click += new System.EventHandler(this.bookmarkCloseButton_Click);
             // 
             // bookmarkSplitter
             // 

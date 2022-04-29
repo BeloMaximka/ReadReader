@@ -53,11 +53,6 @@ namespace ReadReader
             richTextBox.ScrollToCaret();
         }
 
-        private void richTextBox_SelectionChanged(object sender, EventArgs e)
-        {
-            //MessageBox.Show(richTextBox.SelectionStart.ToString());
-        }
-
         private void richTextBox_MouseUp(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
@@ -69,14 +64,28 @@ namespace ReadReader
 
         private void bookmarkContextMenu_Opening(object sender, CancelEventArgs e)
         {
-            if (bookmarkListBox.SelectedIndex == -1)
+            if (bookmarkListBox.IndexFromPoint(bookmarkListBox.PointToClient(Control.MousePosition))  == -1)
                 e.Cancel = true;
         }
 
         private void deleteBookmarkMenuItem_Click(object sender, EventArgs e)
         {
-            book.Bookmarks.RemoveAt(bookmarkListBox.SelectedIndex);
+            int index = bookmarkListBox.IndexFromPoint(bookmarkListBox.PointToClient(bookmarkContextMenu.Bounds.Location));
+            book.Bookmarks.RemoveAt(index);
             bookSaver.SaveBookmarks(book.Info.ID, book);
+        }
+
+        private void renameBookmarkMenuItem_Click(object sender, EventArgs e)
+        {
+            BookmarkNameForm form = new BookmarkNameForm();
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                int index = bookmarkListBox.IndexFromPoint(bookmarkListBox.PointToClient(bookmarkContextMenu.Bounds.Location));
+                book.Bookmarks[index].Name = (string)form.Tag;
+                bookmarkListBox.DrawMode = DrawMode.OwnerDrawFixed;
+                bookmarkListBox.DrawMode = DrawMode.Normal;
+                bookSaver.SaveBookmarks(book.Info.ID, book);
+            }
         }
     }
 }

@@ -50,6 +50,7 @@
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.mainToolStrip = new System.Windows.Forms.ToolStrip();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.renameBookmarkMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainPanel.SuspendLayout();
             this.bookmarkPanel.SuspendLayout();
             this.bookmarkContextMenu.SuspendLayout();
@@ -141,9 +142,10 @@
             // bookmarkContextMenu
             // 
             this.bookmarkContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.renameBookmarkMenuItem,
             this.deleteBookmarkMenuItem});
             this.bookmarkContextMenu.Name = "bookmarkContextMenu";
-            this.bookmarkContextMenu.Size = new System.Drawing.Size(181, 48);
+            this.bookmarkContextMenu.Size = new System.Drawing.Size(181, 70);
             this.bookmarkContextMenu.Opening += new System.ComponentModel.CancelEventHandler(this.bookmarkContextMenu_Opening);
             // 
             // deleteBookmarkMenuItem
@@ -180,7 +182,6 @@
             this.richTextBox.Size = new System.Drawing.Size(800, 510);
             this.richTextBox.TabIndex = 0;
             this.richTextBox.Text = "";
-            this.richTextBox.SelectionChanged += new System.EventHandler(this.richTextBox_SelectionChanged);
             this.richTextBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.richTextBox_MouseUp);
             // 
             // mainContextMenu
@@ -240,6 +241,13 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
+            // renameBookmarkMenuItem
+            // 
+            this.renameBookmarkMenuItem.Name = "renameBookmarkMenuItem";
+            this.renameBookmarkMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.renameBookmarkMenuItem.Text = "Переименовать";
+            this.renameBookmarkMenuItem.Click += new System.EventHandler(this.renameBookmarkMenuItem_Click);
+            // 
             // BookForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -285,5 +293,6 @@
         private System.Windows.Forms.ToolStripMenuItem добавитьЗакладкуToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip bookmarkContextMenu;
         private System.Windows.Forms.ToolStripMenuItem deleteBookmarkMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem renameBookmarkMenuItem;
     }
 }

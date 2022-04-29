@@ -46,10 +46,10 @@ namespace ReadReader
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.splitter2 = new System.Windows.Forms.Splitter();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.toolStrip3 = new System.Windows.Forms.ToolStrip();
             this.toolStrip4 = new System.Windows.Forms.ToolStrip();
+            this.splitter2 = new System.Windows.Forms.Splitter();
             this.panel1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -207,14 +207,6 @@ namespace ReadReader
             this.panel2.Size = new System.Drawing.Size(1050, 469);
             this.panel2.TabIndex = 8;
             // 
-            // splitter2
-            // 
-            this.splitter2.Location = new System.Drawing.Point(200, 0);
-            this.splitter2.Name = "splitter2";
-            this.splitter2.Size = new System.Drawing.Size(3, 469);
-            this.splitter2.TabIndex = 6;
-            this.splitter2.TabStop = false;
-            // 
             // toolStripContainer1
             // 
             // 
@@ -259,6 +251,14 @@ namespace ReadReader
             this.toolStrip4.Name = "toolStrip4";
             this.toolStrip4.Size = new System.Drawing.Size(32, 21);
             this.toolStrip4.TabIndex = 0;
+            // 
+            // splitter2
+            // 
+            this.splitter2.Location = new System.Drawing.Point(200, 0);
+            this.splitter2.Name = "splitter2";
+            this.splitter2.Size = new System.Drawing.Size(3, 469);
+            this.splitter2.TabIndex = 6;
+            this.splitter2.TabStop = false;
             // 
             // Form1
             // 

@@ -57,7 +57,7 @@ namespace ReadReader
             else
             {
                 Book book = bookFileLoader.LoadBookFromDir((uint)view.SelectedItems[0].Tag);
-                new BookForm(book).ShowDialog();
+                new BookForm(book, bookFileSaver).ShowDialog();
             }
         }
 

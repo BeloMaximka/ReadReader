@@ -79,6 +79,14 @@ namespace ReadReader
                             book.Info.Authors.Add(item.ToString());
                         book.Info.ID = (uint)data.ID;
                     }
+                    
+                    book.Bookmarks = JsonConvert.DeserializeObject<BindingList<Bookmark>>(File.ReadAllText(directory + "\\bookmarks.json"));
+                    if (book.Bookmarks == null)
+                        book.Bookmarks = new BindingList<Bookmark>();
+
+                    book.Notes = JsonConvert.DeserializeObject<BindingList<Note>>(File.ReadAllText(directory + "\\notes.json"));
+                    if (book.Notes == null)
+                        book.Notes = new BindingList<Note>();
                     return book;
                 }
             }

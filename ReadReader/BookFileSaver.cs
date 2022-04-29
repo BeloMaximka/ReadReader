@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 namespace ReadReader
 {
-    class BookFileSaver
+    public class BookFileSaver
     {
         string path;
         LibraryManager library;
@@ -20,7 +20,7 @@ namespace ReadReader
         public void SaveBook(uint id, Book book)
         {
             string resultDir = "";
-            string[] directories;
+            string[] directories = null;
             try
             {
                 directories = Directory.GetDirectories(path);
@@ -30,7 +30,7 @@ namespace ReadReader
                 Directory.CreateDirectory(path);
             }
 
-            foreach (var directory in Directory.GetDirectories(path))
+            foreach (var directory in directories)
             {
                 uint dirId;
                 Regex regex = new Regex("\\\\\\d.");
@@ -70,6 +70,50 @@ namespace ReadReader
                 serializer.Serialize(writer, book.Bookmarks);
 
             File.WriteAllText($"{path}\\{resultDir}\\text.rtf", book.RTF);
+        }
+        public void SaveBookmarks(uint id, Book book)
+        {
+            string resultDir = "";
+
+            foreach (var directory in Directory.GetDirectories(path))
+            {
+                uint dirId;
+                Regex regex = new Regex("\\\\\\d.");
+                string number = regex.Match(directory).ToString().Trim('\\', '.');
+                if (uint.TryParse(number, out dirId) && dirId == id)
+                {
+                    resultDir = directory;
+                    break;
+                }
+            }
+            if (resultDir == "")
+                throw new DirectoryNotFoundException($"Cannot find book directory with id {id}");
+            JsonSerializer serializer = new JsonSerializer();
+            using (StreamWriter sw = new StreamWriter($"{resultDir}\\bookmarks.json"))
+            using (JsonWriter writer = new JsonTextWriter(sw))
+                serializer.Serialize(writer, book.Bookmarks);
+        }
+        public void SaveNotes(uint id, Book book)
+        {
+            string resultDir = "";
+
+            foreach (var directory in Directory.GetDirectories(path))
+            {
+                uint dirId;
+                Regex regex = new Regex("\\\\\\d.");
+                string number = regex.Match(directory).ToString().Trim('\\', '.');
+                if (uint.TryParse(number, out dirId) && dirId == id)
+                {
+                    resultDir = directory;
+                    break;
+                }
+            }
+            if (resultDir == "")
+                throw new DirectoryNotFoundException($"Cannot find book directory with id {id}");
+            JsonSerializer serializer = new JsonSerializer();
+            using (StreamWriter sw = new StreamWriter($"{resultDir}\\notes.json"))
+            using (JsonWriter writer = new JsonTextWriter(sw))
+                serializer.Serialize(writer, book.Notes);
         }
     }
 }

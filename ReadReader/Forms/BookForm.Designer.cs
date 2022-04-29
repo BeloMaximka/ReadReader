@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BookForm));
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.bookmarkButton = new System.Windows.Forms.ToolStripButton();
@@ -40,6 +41,8 @@
             this.bookmarkToolStrip = new System.Windows.Forms.ToolStrip();
             this.bookmarkStripLabel = new System.Windows.Forms.ToolStripLabel();
             this.richTextBox = new System.Windows.Forms.RichTextBox();
+            this.mainContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.добавитьЗакладкуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
@@ -48,6 +51,7 @@
             this.mainPanel.SuspendLayout();
             this.bookmarkPanel.SuspendLayout();
             this.bookmarkToolStrip.SuspendLayout();
+            this.mainContextMenu.SuspendLayout();
             this.mainToolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -128,6 +132,7 @@
             this.bookmarkListBox.Name = "bookmarkListBox";
             this.bookmarkListBox.Size = new System.Drawing.Size(200, 485);
             this.bookmarkListBox.TabIndex = 1;
+            this.bookmarkListBox.SelectedIndexChanged += new System.EventHandler(this.bookmarkListBox_SelectedIndexChanged);
             // 
             // bookmarkToolStrip
             // 
@@ -149,12 +154,29 @@
             // 
             // richTextBox
             // 
+            this.richTextBox.ContextMenuStrip = this.mainContextMenu;
             this.richTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextBox.Location = new System.Drawing.Point(0, 0);
             this.richTextBox.Name = "richTextBox";
             this.richTextBox.Size = new System.Drawing.Size(800, 510);
             this.richTextBox.TabIndex = 0;
             this.richTextBox.Text = "";
+            this.richTextBox.SelectionChanged += new System.EventHandler(this.richTextBox_SelectionChanged);
+            this.richTextBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.richTextBox_MouseUp);
+            // 
+            // mainContextMenu
+            // 
+            this.mainContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.добавитьЗакладкуToolStripMenuItem});
+            this.mainContextMenu.Name = "mainContextMenu";
+            this.mainContextMenu.Size = new System.Drawing.Size(178, 26);
+            // 
+            // добавитьЗакладкуToolStripMenuItem
+            // 
+            this.добавитьЗакладкуToolStripMenuItem.Name = "добавитьЗакладкуToolStripMenuItem";
+            this.добавитьЗакладкуToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.добавитьЗакладкуToolStripMenuItem.Text = "Добавить закладку";
+            this.добавитьЗакладкуToolStripMenuItem.Click += new System.EventHandler(this.AddBookmarkToolStripMenuItem_Click);
             // 
             // toolStripLabel3
             // 
@@ -213,6 +235,7 @@
             this.bookmarkPanel.PerformLayout();
             this.bookmarkToolStrip.ResumeLayout(false);
             this.bookmarkToolStrip.PerformLayout();
+            this.mainContextMenu.ResumeLayout(false);
             this.mainToolStrip.ResumeLayout(false);
             this.mainToolStrip.PerformLayout();
             this.ResumeLayout(false);
@@ -238,5 +261,7 @@
         private System.Windows.Forms.ToolStripLabel toolStripLabel2;
         private System.Windows.Forms.ToolStrip mainToolStrip;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ContextMenuStrip mainContextMenu;
+        private System.Windows.Forms.ToolStripMenuItem добавитьЗакладкуToolStripMenuItem;
     }
 }

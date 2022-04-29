@@ -38,6 +38,8 @@
             this.mainPanel = new System.Windows.Forms.Panel();
             this.bookmarkPanel = new System.Windows.Forms.Panel();
             this.bookmarkListBox = new System.Windows.Forms.ListBox();
+            this.bookmarkContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.deleteBookmarkMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bookmarkToolStrip = new System.Windows.Forms.ToolStrip();
             this.bookmarkStripLabel = new System.Windows.Forms.ToolStripLabel();
             this.richTextBox = new System.Windows.Forms.RichTextBox();
@@ -50,6 +52,7 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.mainPanel.SuspendLayout();
             this.bookmarkPanel.SuspendLayout();
+            this.bookmarkContextMenu.SuspendLayout();
             this.bookmarkToolStrip.SuspendLayout();
             this.mainContextMenu.SuspendLayout();
             this.mainToolStrip.SuspendLayout();
@@ -126,6 +129,7 @@
             // 
             // bookmarkListBox
             // 
+            this.bookmarkListBox.ContextMenuStrip = this.bookmarkContextMenu;
             this.bookmarkListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.bookmarkListBox.FormattingEnabled = true;
             this.bookmarkListBox.Location = new System.Drawing.Point(0, 25);
@@ -133,6 +137,21 @@
             this.bookmarkListBox.Size = new System.Drawing.Size(200, 485);
             this.bookmarkListBox.TabIndex = 1;
             this.bookmarkListBox.SelectedIndexChanged += new System.EventHandler(this.bookmarkListBox_SelectedIndexChanged);
+            // 
+            // bookmarkContextMenu
+            // 
+            this.bookmarkContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deleteBookmarkMenuItem});
+            this.bookmarkContextMenu.Name = "bookmarkContextMenu";
+            this.bookmarkContextMenu.Size = new System.Drawing.Size(181, 48);
+            this.bookmarkContextMenu.Opening += new System.ComponentModel.CancelEventHandler(this.bookmarkContextMenu_Opening);
+            // 
+            // deleteBookmarkMenuItem
+            // 
+            this.deleteBookmarkMenuItem.Name = "deleteBookmarkMenuItem";
+            this.deleteBookmarkMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deleteBookmarkMenuItem.Text = "Удалить";
+            this.deleteBookmarkMenuItem.Click += new System.EventHandler(this.deleteBookmarkMenuItem_Click);
             // 
             // bookmarkToolStrip
             // 
@@ -233,6 +252,7 @@
             this.mainPanel.ResumeLayout(false);
             this.bookmarkPanel.ResumeLayout(false);
             this.bookmarkPanel.PerformLayout();
+            this.bookmarkContextMenu.ResumeLayout(false);
             this.bookmarkToolStrip.ResumeLayout(false);
             this.bookmarkToolStrip.PerformLayout();
             this.mainContextMenu.ResumeLayout(false);
@@ -263,5 +283,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ContextMenuStrip mainContextMenu;
         private System.Windows.Forms.ToolStripMenuItem добавитьЗакладкуToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip bookmarkContextMenu;
+        private System.Windows.Forms.ToolStripMenuItem deleteBookmarkMenuItem;
     }
 }

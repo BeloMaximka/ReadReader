@@ -22,6 +22,7 @@ namespace ReadReader
             richTextBox.Rtf = book.RTF;
             bookmarkListBox.DataSource = book.Bookmarks;
             bookmarkListBox.DisplayMember = "Name";
+            bookmarkListBox.SelectedIndex = book.Bookmarks.Count - 1;
         }
 
         private void bookmarkButton_Click(object sender, EventArgs e)
@@ -64,6 +65,18 @@ namespace ReadReader
                 richTextBox.SelectionStart = richTextBox.GetCharIndexFromPosition(e.Location);
                 richTextBox.SelectionLength = 0;
             }
+        }
+
+        private void bookmarkContextMenu_Opening(object sender, CancelEventArgs e)
+        {
+            if (bookmarkListBox.SelectedIndex == -1)
+                e.Cancel = true;
+        }
+
+        private void deleteBookmarkMenuItem_Click(object sender, EventArgs e)
+        {
+            book.Bookmarks.RemoveAt(bookmarkListBox.SelectedIndex);
+            bookSaver.SaveBookmarks(book.Info.ID, book);
         }
     }
 }

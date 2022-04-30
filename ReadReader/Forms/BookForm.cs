@@ -21,10 +21,13 @@ namespace ReadReader
             InitializeComponent();
             this.Icon = Icon.FromHandle(Resource.icon.GetHicon());
 
+            this.Text = book.Info.Title;
             richTextBox.Rtf = book.RTF;
             bookmarkListBox.DataSource = book.Bookmarks;
             bookmarkListBox.DisplayMember = "Name";
             bookmarkListBox.SelectedIndex = book.Bookmarks.Count - 1;
+            noteListBox.DataSource = book.Notes;
+            noteListBox.DisplayMember = "Name";
         }
 
         private void bookmarkButton_Click(object sender, EventArgs e)
@@ -40,6 +43,7 @@ namespace ReadReader
         private void AddBookmarkToolStripMenuItem_Click(object sender, EventArgs e)
         {
             BookmarkNameForm form = new BookmarkNameForm();
+            form.Location = MousePosition;
             if (form.ShowDialog() == DialogResult.OK)
             {
                 Bookmark bookmark = new Bookmark(richTextBox.SelectionStart, (string)form.Tag);
@@ -57,10 +61,9 @@ namespace ReadReader
 
         private void richTextBox_MouseUp(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right)
+            if (e.Button == MouseButtons.Right && richTextBox.SelectionLength == 0)
             {
                 richTextBox.SelectionStart = richTextBox.GetCharIndexFromPosition(e.Location);
-                richTextBox.SelectionLength = 0;
             }
         }
 
@@ -98,6 +101,25 @@ namespace ReadReader
         private void closeNotesButton_Click(object sender, EventArgs e)
         {
             notesPanel.Hide();
+        }
+
+        private void richTextBox_SelectionChanged(object sender, EventArgs e)
+        {
+            AddNoteMenuItem.Visible = richTextBox.SelectionLength > 0;
+        }
+
+        private void AddNoteMenuItem_Click(object sender, EventArgs e)
+        {
+            NoteAddForm form = new NoteAddForm(richTextBox.SelectedText);
+            form.Location = MousePosition;
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                Note note = (Note)form.Tag;
+                note.StartIndex = richTextBox.SelectionStart;
+                note.EndIndex = richTextBox.SelectionStart + richTextBox.SelectionLength;
+                book.Notes.Add(note);
+                bookSaver.SaveNotes(book.Info.ID, book);
+            }
         }
     }
 }

@@ -29,40 +29,47 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BookForm));
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.bookmarkButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.notesButton = new System.Windows.Forms.ToolStripButton();
             this.bookmarkCloseButton = new System.Windows.Forms.ToolStripButton();
             this.bookmarkSplitter = new System.Windows.Forms.Splitter();
             this.mainPanel = new System.Windows.Forms.Panel();
-            this.bookmarkPanel = new System.Windows.Forms.Panel();
-            this.bookmarkListBox = new System.Windows.Forms.ListBox();
-            this.bookmarkContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.deleteBookmarkMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.bookmarkToolStrip = new System.Windows.Forms.ToolStrip();
-            this.bookmarkStripLabel = new System.Windows.Forms.ToolStripLabel();
             this.richTextBox = new System.Windows.Forms.RichTextBox();
             this.mainContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.добавитьЗакладкуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.notesSplitter = new System.Windows.Forms.Splitter();
+            this.notesPanel = new System.Windows.Forms.Panel();
+            this.noteListBox = new System.Windows.Forms.ListBox();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.noteLabel = new System.Windows.Forms.ToolStripLabel();
+            this.closeNotesButton = new System.Windows.Forms.ToolStripButton();
+            this.bookmarkPanel = new System.Windows.Forms.Panel();
+            this.bookmarkListBox = new System.Windows.Forms.ListBox();
+            this.bookmarkContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.renameBookmarkMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteBookmarkMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bookmarkToolStrip = new System.Windows.Forms.ToolStrip();
+            this.bookmarkStripLabel = new System.Windows.Forms.ToolStripLabel();
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.mainToolStrip = new System.Windows.Forms.ToolStrip();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.renameBookmarkMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainPanel.SuspendLayout();
+            this.mainContextMenu.SuspendLayout();
+            this.notesPanel.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.bookmarkPanel.SuspendLayout();
             this.bookmarkContextMenu.SuspendLayout();
             this.bookmarkToolStrip.SuspendLayout();
-            this.mainContextMenu.SuspendLayout();
             this.mainToolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStripButton5
             // 
             this.toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton5.Image = global::ReadReader.Properties.Resources.forward;
+            this.toolStripButton5.Image = global::ReadReader.Resource.right_arrow;
             this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton5.Name = "toolStripButton5";
             this.toolStripButton5.Size = new System.Drawing.Size(23, 22);
@@ -75,17 +82,18 @@
             this.bookmarkButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.bookmarkButton.Name = "bookmarkButton";
             this.bookmarkButton.Size = new System.Drawing.Size(23, 22);
-            this.bookmarkButton.Text = "toolStripButton3";
+            this.bookmarkButton.Text = "Закладки";
             this.bookmarkButton.Click += new System.EventHandler(this.bookmarkButton_Click);
             // 
-            // toolStripButton2
+            // notesButton
             // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton2.Text = "toolStripButton2";
+            this.notesButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.notesButton.Image = global::ReadReader.Resource.note;
+            this.notesButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.notesButton.Name = "notesButton";
+            this.notesButton.Size = new System.Drawing.Size(23, 22);
+            this.notesButton.Text = "Заметки";
+            this.notesButton.Click += new System.EventHandler(this.notesButton_Click);
             // 
             // bookmarkCloseButton
             // 
@@ -100,7 +108,7 @@
             // 
             // bookmarkSplitter
             // 
-            this.bookmarkSplitter.Location = new System.Drawing.Point(200, 0);
+            this.bookmarkSplitter.Location = new System.Drawing.Point(184, 25);
             this.bookmarkSplitter.Name = "bookmarkSplitter";
             this.bookmarkSplitter.Size = new System.Drawing.Size(3, 510);
             this.bookmarkSplitter.TabIndex = 6;
@@ -108,70 +116,12 @@
             // 
             // mainPanel
             // 
-            this.mainPanel.Controls.Add(this.bookmarkSplitter);
-            this.mainPanel.Controls.Add(this.bookmarkPanel);
             this.mainPanel.Controls.Add(this.richTextBox);
             this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPanel.Location = new System.Drawing.Point(0, 25);
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(800, 510);
             this.mainPanel.TabIndex = 11;
-            // 
-            // bookmarkPanel
-            // 
-            this.bookmarkPanel.Controls.Add(this.bookmarkListBox);
-            this.bookmarkPanel.Controls.Add(this.bookmarkToolStrip);
-            this.bookmarkPanel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.bookmarkPanel.Location = new System.Drawing.Point(0, 0);
-            this.bookmarkPanel.Name = "bookmarkPanel";
-            this.bookmarkPanel.Size = new System.Drawing.Size(200, 510);
-            this.bookmarkPanel.TabIndex = 5;
-            this.bookmarkPanel.Visible = false;
-            // 
-            // bookmarkListBox
-            // 
-            this.bookmarkListBox.ContextMenuStrip = this.bookmarkContextMenu;
-            this.bookmarkListBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.bookmarkListBox.FormattingEnabled = true;
-            this.bookmarkListBox.Location = new System.Drawing.Point(0, 25);
-            this.bookmarkListBox.Name = "bookmarkListBox";
-            this.bookmarkListBox.Size = new System.Drawing.Size(200, 485);
-            this.bookmarkListBox.TabIndex = 1;
-            this.bookmarkListBox.SelectedIndexChanged += new System.EventHandler(this.bookmarkListBox_SelectedIndexChanged);
-            // 
-            // bookmarkContextMenu
-            // 
-            this.bookmarkContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.renameBookmarkMenuItem,
-            this.deleteBookmarkMenuItem});
-            this.bookmarkContextMenu.Name = "bookmarkContextMenu";
-            this.bookmarkContextMenu.Size = new System.Drawing.Size(181, 70);
-            this.bookmarkContextMenu.Opening += new System.ComponentModel.CancelEventHandler(this.bookmarkContextMenu_Opening);
-            // 
-            // deleteBookmarkMenuItem
-            // 
-            this.deleteBookmarkMenuItem.Name = "deleteBookmarkMenuItem";
-            this.deleteBookmarkMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.deleteBookmarkMenuItem.Text = "Удалить";
-            this.deleteBookmarkMenuItem.Click += new System.EventHandler(this.deleteBookmarkMenuItem_Click);
-            // 
-            // bookmarkToolStrip
-            // 
-            this.bookmarkToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.bookmarkToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.bookmarkStripLabel,
-            this.bookmarkCloseButton});
-            this.bookmarkToolStrip.Location = new System.Drawing.Point(0, 0);
-            this.bookmarkToolStrip.Name = "bookmarkToolStrip";
-            this.bookmarkToolStrip.Size = new System.Drawing.Size(200, 25);
-            this.bookmarkToolStrip.TabIndex = 0;
-            this.bookmarkToolStrip.Text = "toolStrip2";
-            // 
-            // bookmarkStripLabel
-            // 
-            this.bookmarkStripLabel.Name = "bookmarkStripLabel";
-            this.bookmarkStripLabel.Size = new System.Drawing.Size(58, 22);
-            this.bookmarkStripLabel.Text = "Закладки";
             // 
             // richTextBox
             // 
@@ -198,6 +148,128 @@
             this.добавитьЗакладкуToolStripMenuItem.Text = "Добавить закладку";
             this.добавитьЗакладкуToolStripMenuItem.Click += new System.EventHandler(this.AddBookmarkToolStripMenuItem_Click);
             // 
+            // notesSplitter
+            // 
+            this.notesSplitter.Dock = System.Windows.Forms.DockStyle.Right;
+            this.notesSplitter.Location = new System.Drawing.Point(621, 25);
+            this.notesSplitter.Name = "notesSplitter";
+            this.notesSplitter.Size = new System.Drawing.Size(3, 510);
+            this.notesSplitter.TabIndex = 8;
+            this.notesSplitter.TabStop = false;
+            // 
+            // notesPanel
+            // 
+            this.notesPanel.Controls.Add(this.noteListBox);
+            this.notesPanel.Controls.Add(this.toolStrip1);
+            this.notesPanel.Dock = System.Windows.Forms.DockStyle.Right;
+            this.notesPanel.Location = new System.Drawing.Point(624, 25);
+            this.notesPanel.Name = "notesPanel";
+            this.notesPanel.Size = new System.Drawing.Size(176, 510);
+            this.notesPanel.TabIndex = 7;
+            this.notesPanel.Visible = false;
+            // 
+            // noteListBox
+            // 
+            this.noteListBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.noteListBox.FormattingEnabled = true;
+            this.noteListBox.Location = new System.Drawing.Point(0, 25);
+            this.noteListBox.Name = "noteListBox";
+            this.noteListBox.Size = new System.Drawing.Size(176, 485);
+            this.noteListBox.TabIndex = 1;
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.noteLabel,
+            this.closeNotesButton});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(176, 25);
+            this.toolStrip1.TabIndex = 0;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // noteLabel
+            // 
+            this.noteLabel.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.noteLabel.Name = "noteLabel";
+            this.noteLabel.Size = new System.Drawing.Size(53, 22);
+            this.noteLabel.Text = "Заметки";
+            this.noteLabel.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
+            // 
+            // closeNotesButton
+            // 
+            this.closeNotesButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.closeNotesButton.Image = global::ReadReader.Resource.close;
+            this.closeNotesButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.closeNotesButton.Name = "closeNotesButton";
+            this.closeNotesButton.Size = new System.Drawing.Size(23, 22);
+            this.closeNotesButton.Text = "toolStripButton1";
+            this.closeNotesButton.Click += new System.EventHandler(this.closeNotesButton_Click);
+            // 
+            // bookmarkPanel
+            // 
+            this.bookmarkPanel.Controls.Add(this.bookmarkListBox);
+            this.bookmarkPanel.Controls.Add(this.bookmarkToolStrip);
+            this.bookmarkPanel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.bookmarkPanel.Location = new System.Drawing.Point(0, 25);
+            this.bookmarkPanel.Name = "bookmarkPanel";
+            this.bookmarkPanel.Size = new System.Drawing.Size(184, 510);
+            this.bookmarkPanel.TabIndex = 5;
+            this.bookmarkPanel.Visible = false;
+            // 
+            // bookmarkListBox
+            // 
+            this.bookmarkListBox.ContextMenuStrip = this.bookmarkContextMenu;
+            this.bookmarkListBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.bookmarkListBox.FormattingEnabled = true;
+            this.bookmarkListBox.Location = new System.Drawing.Point(0, 25);
+            this.bookmarkListBox.Name = "bookmarkListBox";
+            this.bookmarkListBox.Size = new System.Drawing.Size(184, 485);
+            this.bookmarkListBox.TabIndex = 1;
+            this.bookmarkListBox.SelectedIndexChanged += new System.EventHandler(this.bookmarkListBox_SelectedIndexChanged);
+            // 
+            // bookmarkContextMenu
+            // 
+            this.bookmarkContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.renameBookmarkMenuItem,
+            this.deleteBookmarkMenuItem});
+            this.bookmarkContextMenu.Name = "bookmarkContextMenu";
+            this.bookmarkContextMenu.Size = new System.Drawing.Size(162, 48);
+            this.bookmarkContextMenu.Opening += new System.ComponentModel.CancelEventHandler(this.bookmarkContextMenu_Opening);
+            // 
+            // renameBookmarkMenuItem
+            // 
+            this.renameBookmarkMenuItem.Name = "renameBookmarkMenuItem";
+            this.renameBookmarkMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.renameBookmarkMenuItem.Text = "Переименовать";
+            this.renameBookmarkMenuItem.Click += new System.EventHandler(this.renameBookmarkMenuItem_Click);
+            // 
+            // deleteBookmarkMenuItem
+            // 
+            this.deleteBookmarkMenuItem.Name = "deleteBookmarkMenuItem";
+            this.deleteBookmarkMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.deleteBookmarkMenuItem.Text = "Удалить";
+            this.deleteBookmarkMenuItem.Click += new System.EventHandler(this.deleteBookmarkMenuItem_Click);
+            // 
+            // bookmarkToolStrip
+            // 
+            this.bookmarkToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.bookmarkToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.bookmarkStripLabel,
+            this.bookmarkCloseButton});
+            this.bookmarkToolStrip.Location = new System.Drawing.Point(0, 0);
+            this.bookmarkToolStrip.Name = "bookmarkToolStrip";
+            this.bookmarkToolStrip.Size = new System.Drawing.Size(184, 25);
+            this.bookmarkToolStrip.TabIndex = 0;
+            this.bookmarkToolStrip.Text = "toolStrip2";
+            // 
+            // bookmarkStripLabel
+            // 
+            this.bookmarkStripLabel.Name = "bookmarkStripLabel";
+            this.bookmarkStripLabel.Size = new System.Drawing.Size(58, 22);
+            this.bookmarkStripLabel.Text = "Закладки";
+            // 
             // toolStripLabel3
             // 
             this.toolStripLabel3.Name = "toolStripLabel3";
@@ -207,7 +279,7 @@
             // toolStripButton4
             // 
             this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton4.Image = global::ReadReader.Properties.Resources.back;
+            this.toolStripButton4.Image = global::ReadReader.Resource.left_arrow;
             this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton4.Name = "toolStripButton4";
             this.toolStripButton4.Size = new System.Drawing.Size(23, 22);
@@ -223,8 +295,8 @@
             // 
             this.mainToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.mainToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton2,
             this.bookmarkButton,
+            this.notesButton,
             this.toolStripSeparator1,
             this.toolStripLabel2,
             this.toolStripButton4,
@@ -241,29 +313,30 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
-            // renameBookmarkMenuItem
-            // 
-            this.renameBookmarkMenuItem.Name = "renameBookmarkMenuItem";
-            this.renameBookmarkMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.renameBookmarkMenuItem.Text = "Переименовать";
-            this.renameBookmarkMenuItem.Click += new System.EventHandler(this.renameBookmarkMenuItem_Click);
-            // 
             // BookForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 535);
+            this.Controls.Add(this.notesSplitter);
+            this.Controls.Add(this.notesPanel);
+            this.Controls.Add(this.bookmarkSplitter);
+            this.Controls.Add(this.bookmarkPanel);
             this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.mainToolStrip);
             this.Name = "BookForm";
             this.Text = "BookForm";
             this.mainPanel.ResumeLayout(false);
+            this.mainContextMenu.ResumeLayout(false);
+            this.notesPanel.ResumeLayout(false);
+            this.notesPanel.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.bookmarkPanel.ResumeLayout(false);
             this.bookmarkPanel.PerformLayout();
             this.bookmarkContextMenu.ResumeLayout(false);
             this.bookmarkToolStrip.ResumeLayout(false);
             this.bookmarkToolStrip.PerformLayout();
-            this.mainContextMenu.ResumeLayout(false);
             this.mainToolStrip.ResumeLayout(false);
             this.mainToolStrip.PerformLayout();
             this.ResumeLayout(false);
@@ -275,7 +348,7 @@
 
         private System.Windows.Forms.ToolStripButton toolStripButton5;
         private System.Windows.Forms.ToolStripButton bookmarkButton;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripButton notesButton;
         private System.Windows.Forms.ToolStripButton bookmarkCloseButton;
         private System.Windows.Forms.Splitter bookmarkSplitter;
         private System.Windows.Forms.Panel mainPanel;
@@ -294,5 +367,11 @@
         private System.Windows.Forms.ContextMenuStrip bookmarkContextMenu;
         private System.Windows.Forms.ToolStripMenuItem deleteBookmarkMenuItem;
         private System.Windows.Forms.ToolStripMenuItem renameBookmarkMenuItem;
+        private System.Windows.Forms.Panel notesPanel;
+        private System.Windows.Forms.Splitter notesSplitter;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripLabel noteLabel;
+        private System.Windows.Forms.ToolStripButton closeNotesButton;
+        private System.Windows.Forms.ListBox noteListBox;
     }
 }

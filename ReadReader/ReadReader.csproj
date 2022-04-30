@@ -148,15 +148,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\forward.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\back.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\folder.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\address_book.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -167,6 +158,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\bookmark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\left_arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\note.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\right_arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bookadd.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

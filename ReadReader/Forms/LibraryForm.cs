@@ -24,9 +24,10 @@ namespace ReadReader
             bookFileSaver = new BookFileSaver(path);
 
             InitializeComponent();
+            this.Icon = Icon.FromHandle(Resource.icon.GetHicon());
             libraryListView.SmallImageList = new ImageList();
-            libraryListView.SmallImageList.Images.Add(Resource.address_book);
-            libraryListView.SmallImageList.Images.Add(Resource.address_book_add);
+            libraryListView.SmallImageList.Images.Add(Resource.book);
+            libraryListView.SmallImageList.Images.Add(Resource.bookadd);
             var books = bookFileLoader.LoadAllBooksFromDir();
             foreach (var book in books)
             {

@@ -19,6 +19,8 @@ namespace ReadReader
             this.bookSaver = bookSaver;
             this.book = book;
             InitializeComponent();
+            this.Icon = Icon.FromHandle(Resource.icon.GetHicon());
+
             richTextBox.Rtf = book.RTF;
             bookmarkListBox.DataSource = book.Bookmarks;
             bookmarkListBox.DisplayMember = "Name";
@@ -64,7 +66,7 @@ namespace ReadReader
 
         private void bookmarkContextMenu_Opening(object sender, CancelEventArgs e)
         {
-            if (bookmarkListBox.IndexFromPoint(bookmarkListBox.PointToClient(Control.MousePosition))  == -1)
+            if (bookmarkListBox.IndexFromPoint(bookmarkListBox.PointToClient(Control.MousePosition)) == -1)
                 e.Cancel = true;
         }
 
@@ -86,6 +88,16 @@ namespace ReadReader
                 bookmarkListBox.DrawMode = DrawMode.Normal;
                 bookSaver.SaveBookmarks(book.Info.ID, book);
             }
+        }
+
+        private void notesButton_Click(object sender, EventArgs e)
+        {
+            notesPanel.Visible = !notesPanel.Visible;
+        }
+
+        private void closeNotesButton_Click(object sender, EventArgs e)
+        {
+            notesPanel.Hide();
         }
     }
 }

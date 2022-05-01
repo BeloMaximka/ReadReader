@@ -9,8 +9,7 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Windows.Forms;
 using System.Xml;
-using VersOne.Epub;
-using MarkupConverter;
+using System.Drawing.Imaging;
 
 namespace ReadReader
 {

@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using System.ComponentModel;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
+using System.Xml;
+using System.Xml.XPath;
 
 namespace ReadReader
 {
@@ -23,6 +25,7 @@ namespace ReadReader
             this.path = path;
             loaders = new Dictionary<string, Loader>();
             loaders.Add(".epub", LoadFromEpub);
+            loaders.Add(".fb2", LoadFromFb2);
         }
         public static Book LoadFromFile(string path)
         {
@@ -38,12 +41,13 @@ namespace ReadReader
         {
             EpubBook eBook = EpubReader.ReadBook(path);
             StringBuilder sb = new StringBuilder();
-            sb.Append("{\\rtf1");
+            sb.Append(@"{\rtf1\fi567\sb50{\fonttbl{\f2\fs24\fcharset0 Times New Roman;}}");
             for (int i = 0; i < eBook.ReadingOrder.Count; i++)
             {
+                sb.Append("{\\f2");
                 string temp = HtmlToRtfConverter.ConvertHtmlToRtf(eBook.ReadingOrder[i].Content).Substring(6);
                 temp = temp.Remove(temp.Length - 1);
-                sb.Append(temp);
+                sb.Append(temp + '}');
             }
             sb.Append('}');
 
@@ -53,6 +57,68 @@ namespace ReadReader
             book.RTF = sb.ToString();
             book.Info.Title = eBook.Title;
             book.Info.Authors = eBook.AuthorList;
+            return book;
+        }
+        static Book LoadFromFb2(string path)
+        {
+            XmlDocument xDoc = new XmlDocument();
+            xDoc.Load(path);
+            StringBuilder sb = new StringBuilder();
+            sb.Append(@"{\rtf1\fi567\sb50{\fonttbl{\f2\fs24\fcharset0 Times New Roman;}}");
+            foreach (XmlNode node in xDoc.DocumentElement.ChildNodes[1])
+            {
+                if (node.Name == "section")
+                {
+                    foreach (XmlNode sectionNode in node.ChildNodes)
+                    {
+
+                        string temp = null;
+                        if (sectionNode.Name == "title")
+                            foreach (XmlNode titleNode in sectionNode.ChildNodes)
+                            {
+                                sb.Append("{\\f2\\fs36");
+                                if (titleNode.FirstChild != null)
+                                {
+                                    temp = titleNode.FirstChild.InnerText;
+                                    foreach (short code in temp)
+                                        sb.Append($"\\u{code}?");
+                                }
+                                sb.Append("\\par}\n");
+                            }
+                        else
+                        {
+                            sb.Append("{\\f2");
+                            if (sectionNode.FirstChild != null)
+                            {
+                                temp = sectionNode.FirstChild.InnerText;
+                                foreach (short code in temp)
+                                    sb.Append($"\\u{code}?");
+                            }
+                            sb.Append("\\par}\n");
+                        }
+                    }
+                }
+            }
+            sb.Append('}');
+
+            Book book = new Book();
+            RichTextBox textBox = new RichTextBox();
+            textBox.Text = sb.ToString();
+            book.RTF = sb.ToString();
+            XmlNode title = xDoc.DocumentElement.SelectSingleNode("//*[local-name()='title-info']");
+            book.Info.Title = title.SelectSingleNode("//*[local-name()='book-title']").InnerText;
+
+            List<string> authors = new List<string>();
+            foreach (XmlNode authorNode in title.SelectNodes("//*[local-name()='author']"))
+            {
+                string authorName = "";
+                foreach (XmlNode namePart in authorNode.ChildNodes)
+                    authorName += namePart.InnerText + " ";
+                authorName = authorName.Substring(0, authorName.Length - 1);
+                authors.Add(authorName);
+            }
+            book.Info.Authors = authors;
+
             return book;
         }
         public Book LoadBookFromDir(uint id)

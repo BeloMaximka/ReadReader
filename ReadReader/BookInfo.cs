@@ -11,5 +11,9 @@ namespace ReadReader
         public string Title { get; set; }
         public List<string> Authors { get; set; }
         public uint ID { get; set; }
+        public BookInfo()
+        {
+            Authors = new List<string>();
+        }
     }
 }

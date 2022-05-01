@@ -133,6 +133,29 @@ namespace ReadReader
 
             return book;
         }
+        static Book LoadFromRtf(string path)
+        {
+            Book book = new Book();
+            book.RTF = File.ReadAllText(path);
+            return book;
+        }
+        static Book LoadFromTxt(string path)
+        {
+            Book book = new Book();
+            StringBuilder sb = new StringBuilder();
+            StreamReader sr = new StreamReader(path);
+            sb.Append(@"{\rtf1\fi567\sb50{\fonttbl{\f2\fs24\fcharset0 Times New Roman;}}");
+            
+            while (!sr.EndOfStream)
+            {
+                sb.Append("{\\f2\\fs36");
+                foreach (short code in sr.ReadLine())
+                    sb.Append($"\\u{code}?");
+                sb.Append("\\par}\n");
+            }
+            book.RTF= sb.ToString();
+            return book;
+        }
         public Book LoadBookFromDir(uint id)
         {
             foreach (var directory in Directory.GetDirectories(path))
@@ -152,7 +175,6 @@ namespace ReadReader
                         dynamic data = serializer.Deserialize(reader);
                         book.Info.Title = data.Title;
                         var list = ((Newtonsoft.Json.Linq.JArray)data.Authors).ToList();
-                        book.Info.Authors = new List<string>();
                         foreach (var item in list)
                             book.Info.Authors.Add(item.ToString());
                         book.Info.ID = (uint)data.ID;

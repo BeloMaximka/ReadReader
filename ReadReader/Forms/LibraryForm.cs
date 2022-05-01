@@ -100,7 +100,7 @@ namespace ReadReader
             foreach (var directory in Directory.GetDirectories(".\\library"))
             {
                 uint dirId;
-                Regex regex = new Regex("\\\\\\d.");
+                Regex regex = new Regex("\\\\\\d.+");
                 string number = regex.Match(directory).ToString().Trim('\\', '.');
                 if (uint.TryParse(number, out dirId) && dirId == id)
                 {

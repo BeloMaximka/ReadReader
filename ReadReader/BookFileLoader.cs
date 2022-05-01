@@ -11,7 +11,6 @@ using System.ComponentModel;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using System.Xml;
-using System.Xml.XPath;
 
 namespace ReadReader
 {
@@ -37,24 +36,37 @@ namespace ReadReader
                 throw new FileFormatException("This file format is not supported.");
             return book;
         }
+        static string GetChildNodesText(XmlNodeList nodes)
+        {
+            string result = "";
+            foreach (XmlNode node in nodes)
+            {
+                result += "{\\f2" + node.InnerText + GetChildNodesText(node.ChildNodes) + "\\par}\n";
+            }
+                
+            return result;
+        }
         static Book LoadFromEpub(string path)
         {
             EpubBook eBook = EpubReader.ReadBook(path);
             StringBuilder sb = new StringBuilder();
             sb.Append(@"{\rtf1\fi567\sb50{\fonttbl{\f2\fs24\fcharset0 Times New Roman;}}");
-            for (int i = 0; i < eBook.ReadingOrder.Count; i++)
+            for (int i = 1; i < eBook.ReadingOrder.Count; i++)
             {
-                sb.Append("{\\f2");
                 string temp = HtmlToRtfConverter.ConvertHtmlToRtf(eBook.ReadingOrder[i].Content).Substring(6);
                 temp = temp.Remove(temp.Length - 1);
-                sb.Append(temp + '}');
+                sb.Append(temp);
             }
             sb.Append('}');
+            string rtf = sb.ToString();
+            Regex regex = new Regex(@"\\fi\d+");
+            string fi = regex.Match(rtf).ToString();
+            rtf = regex.Replace(rtf, "\\fi567");
+            regex = new Regex(@"\\sb\d+");
+            rtf = regex.Replace(rtf, "\\sb50");
 
             Book book = new Book();
-            RichTextBox textBox = new RichTextBox();
-            textBox.Rtf = sb.ToString();
-            book.RTF = sb.ToString();
+            book.RTF = rtf;
             book.Info.Title = eBook.Title;
             book.Info.Authors = eBook.AuthorList;
             return book;
@@ -126,7 +138,7 @@ namespace ReadReader
             foreach (var directory in Directory.GetDirectories(path))
             {
                 uint dirId;
-                Regex regex = new Regex("\\\\\\d.");
+                Regex regex = new Regex("\\\\\\d+.");
                 string number = regex.Match(directory).ToString().Trim('\\', '.');
                 if (uint.TryParse(number, out dirId) && dirId == id)
                 {

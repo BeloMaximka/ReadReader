@@ -48,6 +48,15 @@ namespace ReadReader
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     Book book = BookFileLoader.LoadFromFile(openFileDialog.FileName);
+                    string extention = openFileDialog.FileName.Substring(openFileDialog.FileName.LastIndexOf('.'));
+                    if (extention == ".txt" || extention  == ".rtf")
+                    {
+                        BookInfoForm infoForm = new BookInfoForm(book);
+                        infoForm.Location = Control.MousePosition;
+                        if (infoForm.ShowDialog() == DialogResult.Cancel)
+                            return;
+                    }
+                        
                     bookFileSaver.SaveBook(0, book);
 
                     ListViewItem item = new ListViewItem(book.Info.Title, 0);
@@ -100,7 +109,7 @@ namespace ReadReader
             foreach (var directory in Directory.GetDirectories(".\\library"))
             {
                 uint dirId;
-                Regex regex = new Regex("\\\\\\d.+");
+                Regex regex = new Regex("\\\\\\d+.");
                 string number = regex.Match(directory).ToString().Trim('\\', '.');
                 if (uint.TryParse(number, out dirId) && dirId == id)
                 {

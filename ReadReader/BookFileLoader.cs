@@ -25,6 +25,8 @@ namespace ReadReader
             loaders = new Dictionary<string, Loader>();
             loaders.Add(".epub", LoadFromEpub);
             loaders.Add(".fb2", LoadFromFb2);
+            loaders.Add(".txt", LoadFromTxt);
+            loaders.Add(".rtf", LoadFromRtf);
         }
         public static Book LoadFromFile(string path)
         {
@@ -144,11 +146,11 @@ namespace ReadReader
             Book book = new Book();
             StringBuilder sb = new StringBuilder();
             StreamReader sr = new StreamReader(path);
-            sb.Append(@"{\rtf1\fi567\sb50{\fonttbl{\f2\fs24\fcharset0 Times New Roman;}}");
+            sb.Append(@"{\rtf1\fi567\sb0{\fonttbl{\f2\fs242\fcharset0 Times New Roman;}}");
             
             while (!sr.EndOfStream)
             {
-                sb.Append("{\\f2\\fs36");
+                sb.Append("{\\f2");
                 foreach (short code in sr.ReadLine())
                     sb.Append($"\\u{code}?");
                 sb.Append("\\par}\n");

@@ -83,7 +83,17 @@ namespace ReadReader
                 OpenFileDialog openFileDialog = new OpenFileDialog();
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    Book book = BookFileLoader.LoadFromFile(openFileDialog.FileName);
+                    Book book;
+                    try
+                    {
+                        book = BookFileLoader.LoadFromFile(openFileDialog.FileName);
+                    }
+                    catch (FileFormatException)
+                    {
+                        MessageBox.Show("Данный формат файла не поддерживается", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    
                     string extention = openFileDialog.FileName.Substring(openFileDialog.FileName.LastIndexOf('.'));
                     if (extention == ".txt" || extention == ".rtf")
                     {

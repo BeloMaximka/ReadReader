@@ -83,9 +83,9 @@ namespace ReadReader {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap book {
+        internal static System.Drawing.Bitmap book_bl {
             get {
-                object obj = ResourceManager.GetObject("book", resourceCulture);
+                object obj = ResourceManager.GetObject("book_bl", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,9 +93,9 @@ namespace ReadReader {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bookadd {
+        internal static System.Drawing.Bitmap book_wh {
             get {
-                object obj = ResourceManager.GetObject("bookadd", resourceCulture);
+                object obj = ResourceManager.GetObject("book_wh", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,9 +103,9 @@ namespace ReadReader {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bookmark {
+        internal static System.Drawing.Bitmap bookadd_bl {
             get {
-                object obj = ResourceManager.GetObject("bookmark", resourceCulture);
+                object obj = ResourceManager.GetObject("bookadd_bl", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -113,9 +113,29 @@ namespace ReadReader {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap close {
+        internal static System.Drawing.Bitmap bookadd_wh {
             get {
-                object obj = ResourceManager.GetObject("close", resourceCulture);
+                object obj = ResourceManager.GetObject("bookadd_wh", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap bookmark_bl {
+            get {
+                object obj = ResourceManager.GetObject("bookmark_bl", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap close_bl {
+            get {
+                object obj = ResourceManager.GetObject("close_bl", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -143,9 +163,19 @@ namespace ReadReader {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap note {
+        internal static System.Drawing.Bitmap moon_bl {
             get {
-                object obj = ResourceManager.GetObject("note", resourceCulture);
+                object obj = ResourceManager.GetObject("moon_bl", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap note_bl {
+            get {
+                object obj = ResourceManager.GetObject("note_bl", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -156,6 +186,16 @@ namespace ReadReader {
         internal static System.Drawing.Bitmap right_arrow {
             get {
                 object obj = ResourceManager.GetObject("right_arrow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sun_wh {
+            get {
+                object obj = ResourceManager.GetObject("sun_wh", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

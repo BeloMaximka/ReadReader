@@ -14,20 +14,25 @@ namespace ReadReader
 {
     public partial class LibraryForm : Form
     {
+        Theme darkTheme;
+        Theme lightTheme;
+
         LibraryManager libraryManager;
         BookFileLoader bookFileLoader;
         BookFileSaver bookFileSaver;
-        public LibraryForm(string path)
+        public LibraryForm(string path, Theme lightTheme, Theme darkTheme)
         {
             libraryManager = new LibraryManager(path);
             bookFileLoader = new BookFileLoader(path);
             bookFileSaver = new BookFileSaver(path);
 
             InitializeComponent();
+            
             this.Icon = Icon.FromHandle(Resource.icon.GetHicon());
             libraryListView.SmallImageList = new ImageList();
-            libraryListView.SmallImageList.Images.Add(Resource.book);
-            libraryListView.SmallImageList.Images.Add(Resource.bookadd);
+            libraryListView.SmallImageList.ImageSize = new Size(32, 32);
+            libraryListView.SmallImageList.Images.Add(Resource.book_bl);
+            libraryListView.SmallImageList.Images.Add(Resource.bookadd_bl);
             var books = bookFileLoader.LoadAllBooksFromDir();
             foreach (var book in books)
             {
@@ -37,8 +42,38 @@ namespace ReadReader
             }
             libraryListView.Items.Add(new ListViewItem("Добавить...", 1));
             libraryListView.Columns[0].Width = 185;
-        }
 
+            this.darkTheme = darkTheme;
+            this.lightTheme = lightTheme;
+            if (File.Exists("theme"))
+                ChangeTheme(File.ReadAllText("theme") == "dark");
+            else
+            {
+                File.WriteAllText("theme", "light");
+                ChangeTheme(false);
+            }
+        }
+        private void ChangeTheme(bool dark)
+        {
+            Theme theme = dark ? darkTheme : lightTheme;
+            libraryListView.BackColor = theme.BackColor;
+            libraryListView.ForeColor = theme.ForeColor;
+            toolStrip1.BackColor = theme.BackColor;
+            toolStrip1.ForeColor = theme.ForeColor;
+            BackColor = theme.BackgroundColor;
+            if (dark)
+            {
+                themeButton.Image = Resource.sun_wh;
+                libraryListView.SmallImageList.Images[0] = Resource.book_wh;
+                libraryListView.SmallImageList.Images[1] = Resource.bookadd_wh;
+            }
+            else
+            {
+                themeButton.Image = Resource.moon_bl;
+                libraryListView.SmallImageList.Images[0] = Resource.book_bl;
+                libraryListView.SmallImageList.Images[1] = Resource.bookadd_bl;
+            }
+        }
         private void libraryListView_DoubleClick(object sender, EventArgs e)
         {
             ListView view = sender as ListView;
@@ -117,6 +152,13 @@ namespace ReadReader
                     return;
                 }
             }
+        }
+
+        private void themeButton_Click(object sender, EventArgs e)
+        {
+            string theme = File.ReadAllText("theme");
+            File.WriteAllText("theme", theme == "dark" ? "light" : "dark");
+            ChangeTheme(theme != "dark");
         }
     }
 }

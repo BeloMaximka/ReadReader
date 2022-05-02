@@ -124,16 +124,22 @@
   <data name="address_book_add" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\address_book_add.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="book" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\book.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="bookadd" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="bookadd_bl" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\bookadd.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="bookmark" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="bookadd_wh" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\bookadd_wh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bookmark_bl" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\bookmark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="close" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="book_bl" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\book.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="book_wh" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\book_wh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="close_bl" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\close.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -142,10 +148,16 @@
   <data name="left_arrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\left_arrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="note" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="moon_bl" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\moon_bl.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="note_bl" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\note.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="right_arrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\right_arrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sun_wh" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\sun_wh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

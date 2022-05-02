@@ -221,5 +221,11 @@
   <ItemGroup>
     <None Include="Resources\close_wh.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search_bl.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search_wh.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

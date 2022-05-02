@@ -223,6 +223,26 @@ namespace ReadReader {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap search_bl {
+            get {
+                object obj = ResourceManager.GetObject("search_bl", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap search_wh {
+            get {
+                object obj = ResourceManager.GetObject("search_wh", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap sun_wh {
             get {
                 object obj = ResourceManager.GetObject("sun_wh", resourceCulture);

@@ -55,6 +55,9 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.themeButton = new System.Windows.Forms.ToolStripButton();
             this.themeSeparator = new System.Windows.Forms.ToolStripSeparator();
+            this.searchLabel = new System.Windows.Forms.ToolStripLabel();
+            this.searchTextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.searchButton = new System.Windows.Forms.ToolStripButton();
             this.noteContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.deleteNoteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainPanel.SuspendLayout();
@@ -284,7 +287,10 @@
             this.notesButton,
             this.toolStripSeparator1,
             this.themeButton,
-            this.themeSeparator});
+            this.themeSeparator,
+            this.searchLabel,
+            this.searchTextBox,
+            this.searchButton});
             this.mainToolStrip.Location = new System.Drawing.Point(0, 0);
             this.mainToolStrip.Name = "mainToolStrip";
             this.mainToolStrip.Size = new System.Drawing.Size(800, 39);
@@ -313,6 +319,30 @@
             this.themeSeparator.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.themeSeparator.Name = "themeSeparator";
             this.themeSeparator.Size = new System.Drawing.Size(6, 39);
+            // 
+            // searchLabel
+            // 
+            this.searchLabel.Name = "searchLabel";
+            this.searchLabel.Size = new System.Drawing.Size(45, 36);
+            this.searchLabel.Text = "Поиск:";
+            // 
+            // searchTextBox
+            // 
+            this.searchTextBox.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.searchTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.searchTextBox.Name = "searchTextBox";
+            this.searchTextBox.Size = new System.Drawing.Size(100, 39);
+            // 
+            // searchButton
+            // 
+            this.searchButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.searchButton.Image = global::ReadReader.Resource.search_bl;
+            this.searchButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.searchButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.searchButton.Name = "searchButton";
+            this.searchButton.Size = new System.Drawing.Size(36, 36);
+            this.searchButton.Text = "toolStripButton1";
+            this.searchButton.Click += new System.EventHandler(this.SearchText);
             // 
             // noteContextMenu
             // 
@@ -391,5 +421,8 @@
         private System.Windows.Forms.ToolStripMenuItem deleteNoteMenuItem;
         private System.Windows.Forms.ToolStripButton themeButton;
         private System.Windows.Forms.ToolStripSeparator themeSeparator;
+        private System.Windows.Forms.ToolStripTextBox searchTextBox;
+        private System.Windows.Forms.ToolStripButton searchButton;
+        private System.Windows.Forms.ToolStripLabel searchLabel;
     }
 }

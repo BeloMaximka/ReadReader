@@ -61,6 +61,8 @@ namespace ReadReader
             bookmarkToolStrip.ForeColor = theme.ForeColor;
             notesToolStrip.BackColor = theme.BackColor;
             notesToolStrip.ForeColor = theme.ForeColor;
+            searchTextBox.BackColor = theme.BackgroundColor;
+            searchTextBox.ForeColor = theme.ForeColor;
             if (dark)
             {
                 themeButton.Image = Resource.sun_wh;
@@ -68,6 +70,7 @@ namespace ReadReader
                 notesButton.Image = Resource.note_wh;
                 closeNotesButton.Image = Resource.close_wh;
                 bookmarkCloseButton.Image = Resource.close_wh;
+                searchButton.Image = Resource.search_wh;
             }
             else
             {
@@ -76,6 +79,7 @@ namespace ReadReader
                 notesButton.Image = Resource.note_bl;
                 closeNotesButton.Image = Resource.close_bl;
                 bookmarkCloseButton.Image = Resource.close_bl;
+                searchButton.Image = Resource.search_bl;
             }
         }
 
@@ -209,6 +213,12 @@ namespace ReadReader
             string theme = File.ReadAllText("theme");
             File.WriteAllText("theme", theme == "dark" ? "light" : "dark");
             ChangeTheme(theme != "dark");
+        }
+
+        private void SearchText(object sender, EventArgs e)
+        {
+            if (searchTextBox.Text != "" && richTextBox.Find(searchTextBox.Text) == -1)
+                MessageBox.Show("Ничего не найдено.");
         }
     }
 }

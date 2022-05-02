@@ -7,15 +7,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace ReadReader
 {
     public partial class BookForm : Form
     {
+        Theme lightTheme;
+        Theme darkTheme;
+
         Book book;
         BookFileSaver bookSaver;
-        public BookForm(Book book, BookFileSaver bookSaver)
+        public BookForm(Book book, BookFileSaver bookSaver, Theme lightTheme, Theme darkTheme)
         {
+
             this.bookSaver = bookSaver;
             this.book = book;
             InitializeComponent();
@@ -28,6 +33,50 @@ namespace ReadReader
             bookmarkListBox.SelectedIndex = book.Bookmarks.Count - 1;
             noteListBox.DataSource = book.Notes;
             noteListBox.DisplayMember = "Name";
+
+            this.darkTheme = darkTheme;
+            this.lightTheme = lightTheme;
+            if (File.Exists("theme"))
+                ChangeTheme(File.ReadAllText("theme") == "dark");
+            else
+            {
+                File.WriteAllText("theme", "light");
+                ChangeTheme(false);
+            }
+        }
+        private void ChangeTheme(bool dark)
+        {
+            Theme theme = dark ? darkTheme : lightTheme;
+            bookmarkListBox.BackColor = theme.BackColor;
+            bookmarkListBox.ForeColor = theme.ForeColor;
+            noteListBox.BackColor = theme.BackColor;
+            noteListBox.ForeColor = theme.ForeColor;
+            richTextBox.BackColor = theme.BackgroundColor;
+            richTextBox.ForeColor = theme.ForeColor;
+            mainToolStrip.BackColor = theme.BackColor;
+            mainToolStrip.ForeColor = theme.ForeColor;
+            BackColor = theme.BackgroundColor;
+            ForeColor = theme.ForeColor;
+            bookmarkToolStrip.BackColor = theme.BackColor;
+            bookmarkToolStrip.ForeColor = theme.ForeColor;
+            notesToolStrip.BackColor = theme.BackColor;
+            notesToolStrip.ForeColor = theme.ForeColor;
+            if (dark)
+            {
+                themeButton.Image = Resource.sun_wh;
+                bookmarkButton.Image = Resource.bookmark_wh;
+                notesButton.Image = Resource.note_wh;
+                closeNotesButton.Image = Resource.close_wh;
+                bookmarkCloseButton.Image = Resource.close_wh;
+            }
+            else
+            {
+                themeButton.Image = Resource.moon_bl;
+                bookmarkButton.Image = Resource.bookmark_bl;
+                notesButton.Image = Resource.note_bl;
+                closeNotesButton.Image = Resource.close_bl;
+                bookmarkCloseButton.Image = Resource.close_bl;
+            }
         }
 
         private void bookmarkButton_Click(object sender, EventArgs e)
@@ -42,7 +91,8 @@ namespace ReadReader
 
         private void AddBookmarkToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            BookmarkNameForm form = new BookmarkNameForm();
+            Theme theme = File.ReadAllText("theme") == "dark" ? darkTheme : lightTheme;
+            BookmarkNameForm form = new BookmarkNameForm(theme);
             form.Location = MousePosition;
             if (form.ShowDialog() == DialogResult.OK)
             {
@@ -82,7 +132,8 @@ namespace ReadReader
 
         private void renameBookmarkMenuItem_Click(object sender, EventArgs e)
         {
-            BookmarkNameForm form = new BookmarkNameForm();
+            Theme theme = File.ReadAllText("theme") == "dark" ? darkTheme : lightTheme;
+            BookmarkNameForm form = new BookmarkNameForm(theme);
             if (form.ShowDialog() == DialogResult.OK)
             {
                 int index = bookmarkListBox.IndexFromPoint(bookmarkListBox.PointToClient(bookmarkContextMenu.Bounds.Location));
@@ -110,7 +161,8 @@ namespace ReadReader
 
         private void AddNoteMenuItem_Click(object sender, EventArgs e)
         {
-            NoteAddForm form = new NoteAddForm(richTextBox.SelectedText);
+            Theme theme = File.ReadAllText("theme") == "dark" ? darkTheme : lightTheme;
+            NoteAddForm form = new NoteAddForm(richTextBox.SelectedText, theme);
             form.Location = MousePosition;
             if (form.ShowDialog() == DialogResult.OK)
             {
@@ -142,13 +194,21 @@ namespace ReadReader
             {
                 Note note = noteListBox.Items[index] as Note;
                 string text = richTextBox.Text.Substring(note.StartIndex, note.EndIndex - note.StartIndex);
-                if (new NoteForm(text, note).ShowDialog() == DialogResult.OK)
+                Theme theme = File.ReadAllText("theme") == "dark" ? darkTheme : lightTheme;
+                if (new NoteForm(text, note, theme).ShowDialog() == DialogResult.OK)
                 {
                     noteListBox.DrawMode = DrawMode.OwnerDrawFixed;
                     noteListBox.DrawMode = DrawMode.Normal;
                     bookSaver.SaveNotes(book.Info.ID, book);
                 }
             }
+        }
+
+        private void themeButton_Click(object sender, EventArgs e)
+        {
+            string theme = File.ReadAllText("theme");
+            File.WriteAllText("theme", theme == "dark" ? "light" : "dark");
+            ChangeTheme(theme != "dark");
         }
     }
 }

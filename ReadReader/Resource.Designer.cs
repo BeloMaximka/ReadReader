@@ -133,9 +133,29 @@ namespace ReadReader {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bookmark_wh {
+            get {
+                object obj = ResourceManager.GetObject("bookmark_wh", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap close_bl {
             get {
                 object obj = ResourceManager.GetObject("close_bl", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap close_wh {
+            get {
+                object obj = ResourceManager.GetObject("close_wh", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -176,6 +196,16 @@ namespace ReadReader {
         internal static System.Drawing.Bitmap note_bl {
             get {
                 object obj = ResourceManager.GetObject("note_bl", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap note_wh {
+            get {
+                object obj = ResourceManager.GetObject("note_wh", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -56,11 +56,12 @@ namespace ReadReader
         private void ChangeTheme(bool dark)
         {
             Theme theme = dark ? darkTheme : lightTheme;
-            libraryListView.BackColor = theme.BackColor;
+            libraryListView.BackColor = theme.BackgroundColor;
             libraryListView.ForeColor = theme.ForeColor;
             toolStrip1.BackColor = theme.BackColor;
             toolStrip1.ForeColor = theme.ForeColor;
             BackColor = theme.BackgroundColor;
+            ForeColor = theme.ForeColor;
             if (dark)
             {
                 themeButton.Image = Resource.sun_wh;
@@ -86,7 +87,8 @@ namespace ReadReader
                     string extention = openFileDialog.FileName.Substring(openFileDialog.FileName.LastIndexOf('.'));
                     if (extention == ".txt" || extention == ".rtf")
                     {
-                        BookInfoForm infoForm = new BookInfoForm(book);
+                        Theme theme = File.ReadAllText("theme") == "dark" ? darkTheme : lightTheme;
+                        BookInfoForm infoForm = new BookInfoForm(book, theme);
                         infoForm.Location = Control.MousePosition;
                         if (infoForm.ShowDialog() == DialogResult.Cancel)
                             return;
@@ -103,7 +105,7 @@ namespace ReadReader
             {
                 Book book = bookFileLoader.LoadBookFromDir((uint)view.SelectedItems[0].Tag);
                 Hide();
-                BookForm form = new BookForm(book, bookFileSaver);
+                BookForm form = new BookForm(book, bookFileSaver, lightTheme, darkTheme);
                 form.Location = Location;
                 form.ShowDialog();
                 Location = form.Location;

@@ -53,6 +53,8 @@
             this.bookmarkStripLabel = new System.Windows.Forms.ToolStripLabel();
             this.mainToolStrip = new System.Windows.Forms.ToolStrip();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.themeButton = new System.Windows.Forms.ToolStripButton();
+            this.themeSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.noteContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.deleteNoteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainPanel.SuspendLayout();
@@ -70,9 +72,10 @@
             // 
             this.bookmarkButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.bookmarkButton.Image = global::ReadReader.Resource.bookmark_bl;
+            this.bookmarkButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.bookmarkButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.bookmarkButton.Name = "bookmarkButton";
-            this.bookmarkButton.Size = new System.Drawing.Size(23, 22);
+            this.bookmarkButton.Size = new System.Drawing.Size(36, 36);
             this.bookmarkButton.Text = "Закладки";
             this.bookmarkButton.Click += new System.EventHandler(this.bookmarkButton_Click);
             // 
@@ -80,9 +83,10 @@
             // 
             this.notesButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.notesButton.Image = global::ReadReader.Resource.note_bl;
+            this.notesButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.notesButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.notesButton.Name = "notesButton";
-            this.notesButton.Size = new System.Drawing.Size(23, 22);
+            this.notesButton.Size = new System.Drawing.Size(36, 36);
             this.notesButton.Text = "Заметки";
             this.notesButton.Click += new System.EventHandler(this.notesButton_Click);
             // 
@@ -99,9 +103,9 @@
             // 
             // bookmarkSplitter
             // 
-            this.bookmarkSplitter.Location = new System.Drawing.Point(176, 25);
+            this.bookmarkSplitter.Location = new System.Drawing.Point(176, 39);
             this.bookmarkSplitter.Name = "bookmarkSplitter";
-            this.bookmarkSplitter.Size = new System.Drawing.Size(3, 510);
+            this.bookmarkSplitter.Size = new System.Drawing.Size(3, 496);
             this.bookmarkSplitter.TabIndex = 6;
             this.bookmarkSplitter.TabStop = false;
             // 
@@ -109,9 +113,9 @@
             // 
             this.mainPanel.Controls.Add(this.richTextBox);
             this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainPanel.Location = new System.Drawing.Point(0, 25);
+            this.mainPanel.Location = new System.Drawing.Point(0, 39);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(800, 510);
+            this.mainPanel.Size = new System.Drawing.Size(800, 496);
             this.mainPanel.TabIndex = 11;
             // 
             // richTextBox
@@ -120,7 +124,7 @@
             this.richTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextBox.Location = new System.Drawing.Point(0, 0);
             this.richTextBox.Name = "richTextBox";
-            this.richTextBox.Size = new System.Drawing.Size(800, 510);
+            this.richTextBox.Size = new System.Drawing.Size(800, 496);
             this.richTextBox.TabIndex = 0;
             this.richTextBox.Text = "";
             this.richTextBox.SelectionChanged += new System.EventHandler(this.richTextBox_SelectionChanged);
@@ -152,9 +156,9 @@
             // notesSplitter
             // 
             this.notesSplitter.Dock = System.Windows.Forms.DockStyle.Right;
-            this.notesSplitter.Location = new System.Drawing.Point(621, 25);
+            this.notesSplitter.Location = new System.Drawing.Point(621, 39);
             this.notesSplitter.Name = "notesSplitter";
-            this.notesSplitter.Size = new System.Drawing.Size(3, 510);
+            this.notesSplitter.Size = new System.Drawing.Size(3, 496);
             this.notesSplitter.TabIndex = 8;
             this.notesSplitter.TabStop = false;
             // 
@@ -163,9 +167,9 @@
             this.notesPanel.Controls.Add(this.noteListBox);
             this.notesPanel.Controls.Add(this.notesToolStrip);
             this.notesPanel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.notesPanel.Location = new System.Drawing.Point(624, 25);
+            this.notesPanel.Location = new System.Drawing.Point(624, 39);
             this.notesPanel.Name = "notesPanel";
-            this.notesPanel.Size = new System.Drawing.Size(176, 510);
+            this.notesPanel.Size = new System.Drawing.Size(176, 496);
             this.notesPanel.TabIndex = 7;
             this.notesPanel.Visible = false;
             // 
@@ -175,7 +179,7 @@
             this.noteListBox.FormattingEnabled = true;
             this.noteListBox.Location = new System.Drawing.Point(0, 25);
             this.noteListBox.Name = "noteListBox";
-            this.noteListBox.Size = new System.Drawing.Size(176, 485);
+            this.noteListBox.Size = new System.Drawing.Size(176, 471);
             this.noteListBox.TabIndex = 1;
             this.noteListBox.Click += new System.EventHandler(this.noteListBox_Click);
             // 
@@ -214,9 +218,9 @@
             this.bookmarkPanel.Controls.Add(this.bookmarkListBox);
             this.bookmarkPanel.Controls.Add(this.bookmarkToolStrip);
             this.bookmarkPanel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.bookmarkPanel.Location = new System.Drawing.Point(0, 25);
+            this.bookmarkPanel.Location = new System.Drawing.Point(0, 39);
             this.bookmarkPanel.Name = "bookmarkPanel";
-            this.bookmarkPanel.Size = new System.Drawing.Size(176, 510);
+            this.bookmarkPanel.Size = new System.Drawing.Size(176, 496);
             this.bookmarkPanel.TabIndex = 5;
             this.bookmarkPanel.Visible = false;
             // 
@@ -227,7 +231,7 @@
             this.bookmarkListBox.FormattingEnabled = true;
             this.bookmarkListBox.Location = new System.Drawing.Point(0, 25);
             this.bookmarkListBox.Name = "bookmarkListBox";
-            this.bookmarkListBox.Size = new System.Drawing.Size(176, 485);
+            this.bookmarkListBox.Size = new System.Drawing.Size(176, 471);
             this.bookmarkListBox.TabIndex = 1;
             this.bookmarkListBox.SelectedIndexChanged += new System.EventHandler(this.bookmarkListBox_SelectedIndexChanged);
             // 
@@ -278,17 +282,37 @@
             this.mainToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.bookmarkButton,
             this.notesButton,
-            this.toolStripSeparator1});
+            this.toolStripSeparator1,
+            this.themeButton,
+            this.themeSeparator});
             this.mainToolStrip.Location = new System.Drawing.Point(0, 0);
             this.mainToolStrip.Name = "mainToolStrip";
-            this.mainToolStrip.Size = new System.Drawing.Size(800, 25);
+            this.mainToolStrip.Size = new System.Drawing.Size(800, 39);
             this.mainToolStrip.TabIndex = 10;
             this.mainToolStrip.Text = "toolStrip1";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 39);
+            // 
+            // themeButton
+            // 
+            this.themeButton.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.themeButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.themeButton.Image = global::ReadReader.Resource.moon_bl;
+            this.themeButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.themeButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.themeButton.Name = "themeButton";
+            this.themeButton.Size = new System.Drawing.Size(36, 36);
+            this.themeButton.Text = "Сменить тему";
+            this.themeButton.Click += new System.EventHandler(this.themeButton_Click);
+            // 
+            // themeSeparator
+            // 
+            this.themeSeparator.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.themeSeparator.Name = "themeSeparator";
+            this.themeSeparator.Size = new System.Drawing.Size(6, 39);
             // 
             // noteContextMenu
             // 
@@ -365,5 +389,7 @@
         private System.Windows.Forms.ToolStripMenuItem AddNoteMenuItem;
         private System.Windows.Forms.ContextMenuStrip noteContextMenu;
         private System.Windows.Forms.ToolStripMenuItem deleteNoteMenuItem;
+        private System.Windows.Forms.ToolStripButton themeButton;
+        private System.Windows.Forms.ToolStripSeparator themeSeparator;
     }
 }

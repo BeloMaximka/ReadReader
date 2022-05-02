@@ -212,5 +212,14 @@
   <ItemGroup>
     <None Include="Resources\bookadd_wh.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bookmark_wh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\note_wh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close_wh.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -12,11 +12,21 @@ namespace ReadReader
 {
     public partial class BookmarkNameForm : Form
     {
-        public BookmarkNameForm(string name = "")
+        public BookmarkNameForm(Theme theme, string name = "")
         {
             InitializeComponent();
+            this.Icon = Icon.FromHandle(Resource.icon.GetHicon());
             textBox1.Text = name;
             DialogResult = DialogResult.Cancel;
+
+            BackColor = theme.BackgroundColor;
+            ForeColor=theme.ForeColor;
+            textBox1.BackColor = theme.BackColor;
+            textBox1.ForeColor = theme.ForeColor;
+            cancelButton.BackColor = theme.BackColor;
+            cancelButton.ForeColor = theme.ForeColor;
+            okButton.BackColor = theme.BackColor;
+            okButton.ForeColor = theme.ForeColor;
         }
 
         private void cancelButton_Click(object sender, EventArgs e)

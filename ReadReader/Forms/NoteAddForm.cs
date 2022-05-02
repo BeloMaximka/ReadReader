@@ -32,7 +32,7 @@ namespace ReadReader
                 return;
             }
             DialogResult = DialogResult.OK;
-            Tag = new Note(0, 0, noteNameTextBox.Text, noteNameTextBox.Text);
+            Tag = new Note(0, 0, noteNameTextBox.Text, noteTextBox.Text);
             Close();
         }
     }

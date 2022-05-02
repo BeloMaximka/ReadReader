@@ -33,7 +33,7 @@ namespace ReadReader
             foreach (var directory in directories)
             {
                 uint dirId;
-                Regex regex = new Regex("\\\\\\d.");
+                Regex regex = new Regex("\\\\\\d+.");
                 string number = regex.Match(directory).ToString().Trim('\\', '.');
                 if (uint.TryParse(number, out dirId) && dirId == id)
                 {
@@ -78,7 +78,7 @@ namespace ReadReader
             foreach (var directory in Directory.GetDirectories(path))
             {
                 uint dirId;
-                Regex regex = new Regex("\\\\\\d.");
+                Regex regex = new Regex("\\\\\\d+.");
                 string number = regex.Match(directory).ToString().Trim('\\', '.');
                 if (uint.TryParse(number, out dirId) && dirId == id)
                 {
@@ -100,7 +100,7 @@ namespace ReadReader
             foreach (var directory in Directory.GetDirectories(path))
             {
                 uint dirId;
-                Regex regex = new Regex("\\\\\\d.");
+                Regex regex = new Regex("\\\\\\d+.");
                 string number = regex.Match(directory).ToString().Trim('\\', '.');
                 if (uint.TryParse(number, out dirId) && dirId == id)
                 {

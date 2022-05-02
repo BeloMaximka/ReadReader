@@ -121,5 +121,34 @@ namespace ReadReader
                 bookSaver.SaveNotes(book.Info.ID, book);
             }
         }
+
+        private void noteContextMenu_Opening(object sender, CancelEventArgs e)
+        {
+            if (noteListBox.IndexFromPoint(noteListBox.PointToClient(Control.MousePosition)) == -1)
+                e.Cancel = true;
+        }
+
+        private void deleteNoteMenuItem_Click(object sender, EventArgs e)
+        {
+            int index = noteListBox.IndexFromPoint(noteListBox.PointToClient(noteContextMenu.Bounds.Location));
+            book.Notes.RemoveAt(index);
+            bookSaver.SaveNotes(book.Info.ID, book);
+        }
+
+        private void noteListBox_Click(object sender, EventArgs e)
+        {
+            int index = noteListBox.IndexFromPoint(noteListBox.PointToClient(Control.MousePosition));
+            if (index != -1)
+            {
+                Note note = noteListBox.Items[index] as Note;
+                string text = richTextBox.Text.Substring(note.StartIndex, note.EndIndex - note.StartIndex);
+                if (new NoteForm(text, note).ShowDialog() == DialogResult.OK)
+                {
+                    noteListBox.DrawMode = DrawMode.OwnerDrawFixed;
+                    noteListBox.DrawMode = DrawMode.Normal;
+                    bookSaver.SaveNotes(book.Info.ID, book);
+                }
+            }
+        }
     }
 }

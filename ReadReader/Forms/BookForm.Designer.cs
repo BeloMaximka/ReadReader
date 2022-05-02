@@ -57,6 +57,8 @@
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.mainToolStrip = new System.Windows.Forms.ToolStrip();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.noteContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.deleteNoteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainPanel.SuspendLayout();
             this.mainContextMenu.SuspendLayout();
             this.notesPanel.SuspendLayout();
@@ -65,6 +67,7 @@
             this.bookmarkContextMenu.SuspendLayout();
             this.bookmarkToolStrip.SuspendLayout();
             this.mainToolStrip.SuspendLayout();
+            this.noteContextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStripButton5
@@ -142,7 +145,7 @@
             this.AddBookmarkMenuItem,
             this.AddNoteMenuItem});
             this.mainContextMenu.Name = "mainContextMenu";
-            this.mainContextMenu.Size = new System.Drawing.Size(181, 70);
+            this.mainContextMenu.Size = new System.Drawing.Size(178, 48);
             // 
             // AddBookmarkMenuItem
             // 
@@ -154,7 +157,7 @@
             // AddNoteMenuItem
             // 
             this.AddNoteMenuItem.Name = "AddNoteMenuItem";
-            this.AddNoteMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.AddNoteMenuItem.Size = new System.Drawing.Size(177, 22);
             this.AddNoteMenuItem.Text = "Добавить заметку";
             this.AddNoteMenuItem.Visible = false;
             this.AddNoteMenuItem.Click += new System.EventHandler(this.AddNoteMenuItem_Click);
@@ -187,6 +190,7 @@
             this.noteListBox.Name = "noteListBox";
             this.noteListBox.Size = new System.Drawing.Size(176, 485);
             this.noteListBox.TabIndex = 1;
+            this.noteListBox.Click += new System.EventHandler(this.noteListBox_Click);
             // 
             // notesToolStrip
             // 
@@ -324,6 +328,21 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
+            // noteContextMenu
+            // 
+            this.noteContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deleteNoteMenuItem});
+            this.noteContextMenu.Name = "contextMenuStrip1";
+            this.noteContextMenu.Size = new System.Drawing.Size(119, 26);
+            this.noteContextMenu.Opening += new System.ComponentModel.CancelEventHandler(this.noteContextMenu_Opening);
+            // 
+            // deleteNoteMenuItem
+            // 
+            this.deleteNoteMenuItem.Name = "deleteNoteMenuItem";
+            this.deleteNoteMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deleteNoteMenuItem.Text = "Удалить";
+            this.deleteNoteMenuItem.Click += new System.EventHandler(this.deleteNoteMenuItem_Click);
+            // 
             // BookForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -351,6 +370,7 @@
             this.bookmarkToolStrip.PerformLayout();
             this.mainToolStrip.ResumeLayout(false);
             this.mainToolStrip.PerformLayout();
+            this.noteContextMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -386,5 +406,7 @@
         private System.Windows.Forms.ToolStripButton closeNotesButton;
         private System.Windows.Forms.ListBox noteListBox;
         private System.Windows.Forms.ToolStripMenuItem AddNoteMenuItem;
+        private System.Windows.Forms.ContextMenuStrip noteContextMenu;
+        private System.Windows.Forms.ToolStripMenuItem deleteNoteMenuItem;
     }
 }

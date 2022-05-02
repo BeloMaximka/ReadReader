@@ -49,14 +49,14 @@ namespace ReadReader
                 {
                     Book book = BookFileLoader.LoadFromFile(openFileDialog.FileName);
                     string extention = openFileDialog.FileName.Substring(openFileDialog.FileName.LastIndexOf('.'));
-                    if (extention == ".txt" || extention  == ".rtf")
+                    if (extention == ".txt" || extention == ".rtf")
                     {
                         BookInfoForm infoForm = new BookInfoForm(book);
                         infoForm.Location = Control.MousePosition;
                         if (infoForm.ShowDialog() == DialogResult.Cancel)
                             return;
                     }
-                        
+
                     bookFileSaver.SaveBook(0, book);
 
                     ListViewItem item = new ListViewItem(book.Info.Title, 0);
@@ -69,9 +69,9 @@ namespace ReadReader
                 Book book = bookFileLoader.LoadBookFromDir((uint)view.SelectedItems[0].Tag);
                 Hide();
                 BookForm form = new BookForm(book, bookFileSaver);
-                form.Location = this.Location;
+                form.Location = Location;
                 form.ShowDialog();
-                this.Location=form.Location;
+                Location = form.Location;
                 Show();
             }
         }

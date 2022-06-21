@@ -27,12 +27,15 @@ namespace ReadReader
             bookFileSaver = new BookFileSaver(path);
 
             InitializeComponent();
-            
+
             this.Icon = Icon.FromHandle(Resource.icon.GetHicon());
             libraryListView.SmallImageList = new ImageList();
             libraryListView.SmallImageList.ImageSize = new Size(32, 32);
             libraryListView.SmallImageList.Images.Add(Resource.book_bl);
             libraryListView.SmallImageList.Images.Add(Resource.bookadd_bl);
+
+            if (!Directory.Exists(path))
+                Directory.CreateDirectory(path);
             var books = bookFileLoader.LoadAllBooksFromDir();
             foreach (var book in books)
             {
@@ -93,7 +96,7 @@ namespace ReadReader
                         MessageBox.Show("Данный формат файла не поддерживается", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
-                    
+
                     string extention = openFileDialog.FileName.Substring(openFileDialog.FileName.LastIndexOf('.'));
                     if (extention == ".txt" || extention == ".rtf")
                     {
